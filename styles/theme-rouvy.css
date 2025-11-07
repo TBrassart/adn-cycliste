@@ -1,0 +1,10 @@
+:root {
+  --bg-color: #18181b;
+  --text-color: #f9fafb;
+  --accent-color: #ffeb3b;
+  --card-bg: #25262b;
+}
+
+.brand-logo {
+  border-color: var(--accent-color);
+}

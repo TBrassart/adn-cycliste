@@ -1,0 +1,27 @@
+:root {
+  --bg-color: #1b1f3b;
+  --text-color: #f9fafb;
+  --accent-color: #22c55e;
+  --card-bg: rgba(15, 23, 42, 0.96);
+}
+
+.adn-header {
+  background: rgba(15, 23, 42, 0.98);
+}
+
+.profile-card::after {
+  content: "❄️";
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  opacity: 0.7;
+}
+
+/* Neige simple (light, pas de JS) */
+body.noel-snow {
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.18) 0, transparent 40%),
+    radial-gradient(circle at 80% 0%, rgba(255,255,255,0.12) 0, transparent 40%);
+  background-size: cover;
+  background-attachment: fixed;
+}

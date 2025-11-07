@@ -1,0 +1,61 @@
+[
+  {
+    "id": "grimpeur",
+    "name": "Grimpeur",
+    "conditions": {
+      "minWkg": 4,
+      "preference": "montagne"
+    },
+    "description": "Tu es léger et constant, les pentes te sourient.",
+    "emoji": "🧗‍"
+  },
+  {
+    "id": "diesel",
+    "name": "Rouleur diesel",
+    "conditions": {
+      "minEndurance": 8,
+      "maxExplosivity": 6
+    },
+    "description": "Tu carbures à la régularité et à la puissance longue.",
+    "emoji": "🚂"
+  },
+  {
+    "id": "fun-unicorn",
+    "name": "Licorne des cols",
+    "conditions": {
+      "explosivity": 10
+    },
+    "description": "Tu brilles plus fort que ton capteur de puissance ✨",
+    "emoji": "🦄"
+  },
+  {
+    "id": "rouleur",
+    "name": "Rouleur",
+    "conditions": {
+      "minWkg": 3.2,
+      "preference": "plat"
+    },
+    "description": "Tu files vite sur le plat et les faux-plats.",
+    "emoji": "🚴‍"
+  },
+  {
+    "id": "puncher",
+    "name": "Puncheur",
+    "conditions": {
+      "minExplosivity": 7,
+      "preference": "vallonne"
+    },
+    "description": "Les bosses courtes et raides sont ton terrain de jeu.",
+    "emoji": "💥"
+  },
+  {
+	"id": "triathlete",
+	"name": "Triathlète endurant",
+	"conditions": { 
+	  "triathlete": true, 
+	  "minEndurance": 7 },
+	"description": "Tu combines natation, vélo et course avec une endurance hors norme.",
+	"emoji": "🏊‍🚴‍🏃‍"
+	}
+
+]

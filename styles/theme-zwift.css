@@ -1,0 +1,16 @@
+:root {
+  --bg-color: #000000;
+  --text-color: #f9fafb;
+  --accent-color: #ff6a00;
+  --card-bg: #111827;
+  --font-family: "Montserrat", system-ui, -apple-system, sans-serif;
+}
+
+.brand-logo {
+  border-color: #ff6a00;
+}
+
+.btn-primary {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
