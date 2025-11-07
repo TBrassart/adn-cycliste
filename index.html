@@ -41,62 +41,15 @@
     <main class="adn-main">
       <section class="adn-form-card">
         <h2>Entre ton profil</h2>
-        <form id="cyclist-form">
-          <div class="field">
-            <label for="ftp">FTP (W)</label>
-            <input type="number" id="ftp" name="ftp" min="50" max="600" required />
-          </div>
+        <form id="cyclist-form" class="cyclist-form">
+		  <h2>Analyse ton ADN Cycliste 🧬</h2>
 
-          <div class="field">
-            <label for="weight">Poids (kg)</label>
-            <input type="number" id="weight" name="weight" min="40" max="120" step="0.1" required />
-          </div>
+		  <!-- Formulaire dynamique généré par JS -->
+		  <div id="dynamic-form"></div>
 
-          <div class="field">
-            <label for="endurance">Endurance (1-10)</label>
-            <input type="range" id="endurance" name="endurance" min="1" max="10" value="7" />
-            <span class="range-value" id="endurance-value">7</span>
-          </div>
-
-          <div class="field">
-            <label for="explosivity">Explosivité (1-10)</label>
-            <input type="range" id="explosivity" name="explosivity" min="1" max="10" value="5" />
-            <span class="range-value" id="explosivity-value">5</span>
-          </div>
-
-          <div class="field">
-            <label for="preference">Terrain préféré</label>
-            <select id="preference" name="preference">
-              <option value="plat">Plat</option>
-              <option value="vallonne">Vallonné</option>
-              <option value="montagne">Montagne</option>
-            </select>
-          </div>
-			<div class="field">
-			  <label>
-				<input type="checkbox" id="isTriathlete" /> Je pratique le triathlon
-			  </label>
-			</div>
-
-			<div id="triathlon-fields" style="display:none;">
-			  <div class="field">
-				<label for="triDistance">Distance</label>
-				<select id="triDistance">
-				  <option value="">-- Choisir --</option>
-				  <option value="sprint">Sprint</option>
-				  <option value="M">M (Olympique)</option>
-				  <option value="L">L (Half-Ironman)</option>
-				  <option value="XL">XL (Ironman)</option>
-				</select>
-			  </div>
-			  <div class="field">
-				<label for="triTime">Temps (hh:mm ou minutes)</label>
-				<input type="text" id="triTime" placeholder="ex: 2:45 ou 165" />
-			  </div>
-			</div>
-
-          <button type="submit" class="btn-primary">Analyser mon ADN</button>
-        </form>
+		  <button type="submit" class="btn-primary">Analyser mon ADN</button>
+		  <button type="button" id="debug-toggle" class="btn-secondary">Afficher debug</button>
+		</form>
       </section>
 
       <section class="adn-result">
@@ -117,6 +70,8 @@
   </div>
 
   <!-- JS: ordre important -->
+  <script src="js/metricsSchema.js"></script>
+  <script src="js/matchingWeights.js"></script>
   <script src="js/analyzer.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/main.js"></script>

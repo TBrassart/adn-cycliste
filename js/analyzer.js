@@ -7,120 +7,154 @@
      * Calcule les métriques de base.
      */
     computeMetrics(inputs) {
-	  const ftp = Number(inputs.ftp);
-	  const weight = Number(inputs.weight);
-	  const endurance = Number(inputs.endurance);
-	  const explosivity = Number(inputs.explosivity);
-	  const isTriathlete = !!inputs.isTriathlete;
-	  const triDistance = inputs.triDistance || null;
-	  const triTime = inputs.triTime || null;
+	  const schema = window.metricsSchema;
+	  const metrics = {
+		physiologie: {},
+		capacites: {},
+		technique: {},
+		entrainement: {}
+	  };
 
-	  const wkg = weight > 0 ? +(ftp / weight).toFixed(2) : 0;
-	  const wkgScore = Math.min(wkg / 5.5, 1);
-	  const skillsScore = ((endurance + explosivity) / 20);
-	  const globalScore = +((wkgScore * 0.6 + skillsScore * 0.4) * 100).toFixed(0);
+	  // 1️⃣ Parsing automatique des champs selon le schéma
+	  Object.keys(schema).forEach(category => {
+		Object.entries(schema[category]).forEach(([key, meta]) => {
+		  let raw = inputs[key];
+		  if (raw === undefined) return;
 
-	  // Triathlon scoring optionnel
-	  let triScore = 0;
-	  if (isTriathlete && triDistance) {
-		// pondération basique selon distance + performance relative
-		const distanceFactor = { sprint: 0.7, M: 0.8, L: 0.9, XL: 1.0 }[triDistance] || 0.8;
-		let timeValue = 0;
-		if (triTime) {
-		  const minutes = triTime.includes(":")
-			? parseInt(triTime.split(":")[0]) * 60 + parseInt(triTime.split(":")[1])
-			: Number(triTime);
-		  // score inverse : moins de temps = meilleur score
-		  timeValue = Math.max(0, Math.min(1, 300 / minutes)); // 300 min = référence Ironman ~5h
-		}
-		triScore = +(distanceFactor * timeValue).toFixed(2);
+		  switch (meta.type) {
+			case "number":
+			case "range":
+			  metrics[category][key] = Number(raw);
+			  break;
+			case "boolean":
+			  metrics[category][key] = Boolean(raw);
+			  break;
+			case "select":
+			  metrics[category][key] = String(raw);
+			  break;
+			default:
+			  metrics[category][key] = raw;
+		  }
+		});
+	  });
+
+	  // 2️⃣ Calculs dérivés principaux
+	  const ftp = metrics.physiologie.ftp || 0;
+	  const weight = metrics.physiologie.weight || 0;
+	  metrics.physiologie.wkg = weight > 0 ? +(ftp / weight).toFixed(2) : 0;
+
+	  // 3️⃣ Score global pondéré
+	  const endurance = metrics.capacites.endurance || 0;
+	  const explosivite = metrics.capacites.explosivite || 0;
+	  const aerobie = metrics.capacites.aerobie || 0;
+	  const sprint = metrics.capacites.sprint || 0;
+	  const recuperation = metrics.capacites.recuperation || 0;
+	  const volume = metrics.entrainement.volume || 0;
+
+	  // pondérations globales
+	  const weights = {
+		wkg: 0.3,
+		endurance: 0.2,
+		explosivite: 0.15,
+		aerobie: 0.1,
+		sprint: 0.1,
+		recuperation: 0.05,
+		volume: 0.1
+	  };
+
+	  const wkgScore = Math.min(metrics.physiologie.wkg / 5.5, 1);
+	  const globalScore =
+		(wkgScore * weights.wkg) +
+		(endurance / 10) * weights.endurance +
+		(explosivite / 10) * weights.explosivite +
+		(aerobie / 10) * weights.aerobie +
+		(sprint / 10) * weights.sprint +
+		(recuperation / 10) * weights.recuperation +
+		(Math.min(volume / 20, 1) * weights.volume);
+
+	  metrics.globalScore = +(globalScore * 100).toFixed(0);
+
+	  // 4️⃣ Gestion du triathlon
+	  const tri = metrics.entrainement.triathlon;
+	  if (tri) {
+		const distance = metrics.entrainement.triDistance || "M";
+		const distanceFactor = { S: 0.7, M: 0.8, L: 0.9, XL: 1.0 }[distance] || 0.8;
+		metrics.entrainement.triScore = +(distanceFactor * (endurance / 10)).toFixed(2);
 	  }
 
-	  return {
-		ftp,
-		weight,
-		endurance,
-		explosivity,
-		preference: inputs.preference,
-		wkg,
-		globalScore,
-		isTriathlete,
-		triDistance,
-		triTime,
-		triScore
-	  };
+	  // 5️⃣ Retour complet
+	  return metrics;
 	},
-
 
     /**
      * Trouve le meilleur profil à partir des règles JSON.
      * profiles: tableau chargé depuis profiles.json
      */
-    findProfile(metrics, profiles) {
-	  if (!profiles || !profiles.length) return null;
+	findProfile(metrics, profiles) {
+	  if (!profiles || !profiles.length) return [];
 
-	  const weights = {
-		wkg: 0.35,
-		endurance: 0.25,
-		explosivity: 0.20,
-		preference: 0.10,
-		triathlon: 0.10
-	  };
+	  const results = profiles.map((profile) => {
+		const { total, breakdown, details } =
+		  window.matchingWeights.computeWeightedScore(metrics, profile.conditions || {});
 
-	  let best = null;
-	  let bestScore = -1;
+		return {
+		  id: profile.id,
+		  name: profile.name,
+		  emoji: profile.emoji,
+		  description: profile.description,
+		  total,
+		  breakdown,
+		  details
+		};
+	  });
 
-	  profiles.forEach(profile => {
-		const c = profile.conditions || {};
-		let score = 0;
+	  results.sort((a, b) => b.total - a.total);
 
-		if (c.minWkg && metrics.wkg >= c.minWkg) score += weights.wkg;
-		if (c.maxWkg && metrics.wkg <= c.maxWkg) score += weights.wkg * 0.5;
-		if (c.minEndurance && metrics.endurance >= c.minEndurance) score += weights.endurance;
-		if (c.minExplosivity && metrics.explosivity >= c.minExplosivity) score += weights.explosivity;
-		if (c.preference && metrics.preference === c.preference) score += weights.preference;
-		if (metrics.isTriathlete && c.triathlete) score += weights.triathlon;
+	  const maxScore = results.length
+		? Math.max(...results.map((r) => r.total))
+		: 0.0001;
 
-		if (score > bestScore) {
-		  bestScore = score;
-		  best = profile;
-		}
-	  }); 
+	  results.forEach((r) => {
+		r.percent = maxScore > 0 ? +((r.total / maxScore) * 100).toFixed(1) : 0;
+	  });
 
-	  return best;
+	  return results;
 	},
 
     /**
      * Analyse complète : metrics + profil + phrase personnalisée.
      */
-    analyze(inputs, profiles) {
-      const metrics = this.computeMetrics(inputs);
-      const matchedProfile = this.findProfile(metrics, profiles);
+	analyze(inputs, profiles) {
+	  const metrics = this.computeMetrics(inputs);
+	  const matches = this.findProfile(metrics, profiles) || [];
 
-      const baseDesc = matchedProfile
-        ? matchedProfile.description
-        : "Tu as un profil polyvalent : tu peux encore spécialiser ton entraînement.";
-      const emoji = matchedProfile && matchedProfile.emoji ? matchedProfile.emoji : "🚴‍♂️";
-      const label = matchedProfile ? matchedProfile.name : "Polyvalent";
+	  // Si aucun profil trouvé, on crée un fallback neutre
+	  const main = matches.length > 0 ? matches[0] : {
+		id: "polyvalent",
+		name: "Polyvalent",
+		emoji: "🚴‍♂️",
+		description: "Profil équilibré : continue à t’entraîner pour affiner ton ADN cycliste.",
+		percent: 0
+	  };
 
-      const extra =
-        metrics.wkg >= 4.2
-          ? " Ton rapport W/kg est solide, tu as un vrai potentiel en montagne."
-          : metrics.wkg < 3
-          ? " En travaillant la puissance et l’endurance, tu peux débloquer un gros marge de progression."
-          : " Tu disposes d’une base intéressante, à affiner selon tes objectifs.";
+	  const profile = {
+		id: main.id,
+		name: main.name,
+		emoji: main.emoji,
+		description: main.description,
+		percent: main.percent
+	  };
 
-      return {
-        metrics,
-        profile: {
-          id: matchedProfile ? matchedProfile.id : "polyvalent",
-          name: label,
-          emoji,
-          description: baseDesc + extra
-        }
-      };
-    }
-  };
+	  console.log("DEBUG metrics", metrics);
+	  console.log("DEBUG matches", this.findProfile(metrics, profiles));
+
+	  return {
+		metrics,
+		profile,
+		matches
+	  };
+	}
+}
 
   window.ADNAnalyzer = ADNAnalyzer;
 })(window);

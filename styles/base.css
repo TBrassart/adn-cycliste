@@ -135,6 +135,20 @@ input[type="range"] {
   box-shadow: var(--shadow-soft);
 }
 
+.btn-secondary {
+  margin-top: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--accent-color);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.btn-secondary:hover {
+  background: rgba(37, 99, 235, 0.08);
+}
+
 .adn-result {
   display: flex;
   flex-direction: column;
@@ -206,4 +220,109 @@ input[type="range"] {
   .adn-main {
     grid-template-columns: 1fr;
   }
+}
+
+/* Match list – barres de compatibilité */
+.match-list {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.82rem;
+}
+
+.match-bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 6px;
+}
+
+.match-bar-label {
+  white-space: nowrap;
+}
+
+.match-bar-track {
+  position: relative;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(148, 163, 253, 0.15);
+  overflow: hidden;
+}
+
+.match-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: inherit;
+  /* Couleur par défaut, prendra la couleur d'accent selon le thème */
+  background: var(--accent-color);
+  transition: width 0.25s ease-out;
+}
+
+.match-bar-percent {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.form-section {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(0,0,0,0.02);
+}
+
+.form-section h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--accent-color);
+}
+
+.form-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.form-field label {
+  flex: 1 1 60%;
+  font-size: 0.95rem;
+}
+
+.form-field input,
+.form-field select {
+  flex: 1 1 35%;
+  padding: 0.3rem;
+  border-radius: 0.4rem;
+  border: 1px solid #ccc;
+}
+
+.range-value {
+  margin-left: 10px;
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.debug-list {
+  list-style: none;
+  padding-left: 0;
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.debug-list li {
+  margin-bottom: 3px;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.debug-list code {
+  font-size: 0.75rem;
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: rgba(148, 163, 253, 0.12);
 }

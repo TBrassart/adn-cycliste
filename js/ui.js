@@ -2,161 +2,279 @@
 (function (window, document) {
   "use strict";
 
-  let radarChart = null;
-  const THEME_KEY = "adn-theme";
-
   const ADNUI = {
-    initThemeSelector() {
-      const select = document.getElementById("theme-select");
-      if (!select) return;
+    /**
+     * Génère dynamiquement le formulaire à partir du metricsSchema
+     */
+    generateDynamicForm() {
+      const container = document.getElementById("dynamic-form");
+      if (!container) return;
 
-      // Récup thème stocké
-      const saved = localStorage.getItem(THEME_KEY) || "light";
-      select.value = saved;
-      this.switchTheme(saved);
+      const schema = window.metricsSchema;
+      container.innerHTML = ""; // reset
 
-      select.addEventListener("change", (e) => {
-        this.switchTheme(e.target.value);
+      Object.entries(schema).forEach(([category, fields]) => {
+        const section = document.createElement("section");
+        section.classList.add("form-section");
+
+        const title = document.createElement("h3");
+        title.textContent =
+          category.charAt(0).toUpperCase() + category.slice(1);
+        section.appendChild(title);
+
+        Object.entries(fields).forEach(([key, meta]) => {
+          const fieldDiv = document.createElement("div");
+          fieldDiv.classList.add("form-field");
+          fieldDiv.dataset.fieldKey = key;
+
+          const label = document.createElement("label");
+          label.textContent = meta.label;
+          label.setAttribute("for", key);
+
+          let input;
+          switch (meta.type) {
+            case "number":
+            case "range":
+              input = document.createElement("input");
+              input.type = meta.type;
+              input.id = key;
+              input.name = key;
+              input.min = meta.range?.[0];
+              input.max = meta.range?.[1];
+              if (meta.type === "range") {
+                input.value = Math.round(
+                  (meta.range?.[0] + meta.range?.[1]) / 2
+                );
+                const span = document.createElement("span");
+                span.classList.add("range-value");
+                span.textContent = input.value;
+                input.addEventListener(
+                  "input",
+                  () => (span.textContent = input.value)
+                );
+                fieldDiv.appendChild(span);
+              }
+              break;
+
+            case "select":
+              input = document.createElement("select");
+              input.id = key;
+              input.name = key;
+              meta.options?.forEach((opt) => {
+                const option = document.createElement("option");
+                option.value = opt;
+                option.textContent = opt;
+                input.appendChild(option);
+              });
+              break;
+
+            case "boolean":
+              input = document.createElement("input");
+              input.type = "checkbox";
+              input.id = key;
+              input.name = key;
+              break;
+
+            default:
+              input = document.createElement("input");
+              input.type = "text";
+              input.id = key;
+              input.name = key;
+          }
+
+          fieldDiv.appendChild(label);
+          fieldDiv.appendChild(input);
+
+          // 🔹 Dépendance (ex: triDistance dépend de triathlon)
+          if (meta.dependsOn) {
+            fieldDiv.dataset.dependsOn = meta.dependsOn;
+            fieldDiv.style.display = "none"; // caché par défaut
+          }
+
+          section.appendChild(fieldDiv);
+        });
+
+        container.appendChild(section);
+      });
+
+      // ✅ Gestion dynamique des dépendances (triathlon → triDistance)
+      const checkboxes = container.querySelectorAll("input[type='checkbox']");
+      checkboxes.forEach((box) => {
+        box.addEventListener("change", () => {
+          const key = box.name;
+          const dependentFields = container.querySelectorAll(
+            `[data-depends-on="${key}"]`
+          );
+          dependentFields.forEach((div) => {
+            div.style.display = box.checked ? "flex" : "none";
+          });
+        });
       });
     },
 
-    switchTheme(themeName) {
-      const themeLinks = document.querySelectorAll('link[data-theme]');
-      themeLinks.forEach((link) => {
-        const t = link.getAttribute("data-theme");
-        link.disabled = t !== themeName;
-      });
+    /**
+     * Affiche la carte du profil avec détails + debug
+     */
+    renderProfileCard(result) {
+	  const container = document.getElementById("profile-card");
+	  if (!container) return;
 
-      // Gestion effet Noël (classe body)
-      document.body.classList.toggle("noel-snow", themeName === "noel");
+	  const { profile, metrics, matches } = result;
+	  if (!profile) return;
 
-      localStorage.setItem(THEME_KEY, themeName);
-    },
+	  container.classList.remove("profile-card--empty");
+	  container.innerHTML = "";
 
-    updateRangeLabels() {
-      const enduranceInput = document.getElementById("endurance");
-      const enduranceValue = document.getElementById("endurance-value");
-      const explosivityInput = document.getElementById("explosivity");
-      const explosivityValue = document.getElementById("explosivity-value");
+	  // ✅ Génération des barres de compatibilité
+	  const matchBars = (matches || [])
+		.map((m) => {
+		  const safePercent = isNaN(m.percent)
+			? 0
+			: Math.max(2, Math.min(100, m.percent));
+		  const color =
+			getComputedStyle(document.documentElement).getPropertyValue(
+			  "--accent-color"
+			) || "#2563eb";
+		  return `
+			<div class="match-bar">
+			  <div class="match-bar-label">${m.emoji || "🚴‍♂️"} ${m.name}</div>
+			  <div class="match-bar-track">
+				<div class="match-bar-fill" style="width:${safePercent}%;background:${color};"></div>
+			  </div>
+			  <div class="match-bar-percent">${safePercent}%</div>
+			</div>
+		  `;
+		})
+		.join("");
 
-      if (enduranceInput && enduranceValue) {
-        enduranceInput.addEventListener("input", () => {
-          enduranceValue.textContent = enduranceInput.value;
-        });
-      }
-      if (explosivityInput && explosivityValue) {
-        explosivityInput.addEventListener("input", () => {
-          explosivityValue.textContent = explosivityInput.value;
-        });
-      }
-    },
-	
-	toggleTriathlonFields() {
-	  const checkbox = document.getElementById("isTriathlete");
-	  const container = document.getElementById("triathlon-fields");
-	  if (!checkbox || !container) return;
+	  const mainMatch = (matches && matches[0]) ? matches[0] : null;
+	  let debugHtml = "";
 
-	  const updateVisibility = () => {
-		container.style.display = checkbox.checked ? "block" : "none";
-	  };
+	  // ✅ Bloc debug détaillé (✔️/❌)
+	  if (mainMatch && mainMatch.details && mainMatch.details.length) {
+		debugHtml =
+		  `<ul class="debug-list">` +
+		  mainMatch.details
+			.map((d) => {
+			  const icon = d.matched ? "✔️" : "❌";
+			  const weightInfo = d.weight
+				? ` (poids ${(d.weight * 100).toFixed(1)}%)`
+				: "";
+			  const actual =
+				d.actual === null || d.actual === undefined ? "—" : d.actual;
+			  return `
+				<li>
+				  ${icon}
+				  <strong>${d.label}</strong> :
+				  attendu <code>${d.expected}</code>,
+				  obtenu <code>${actual}</code>${weightInfo}
+				</li>
+			  `;
+			})
+			.join("") +
+		  `</ul>`;
+	  }
 
-	  checkbox.addEventListener("change", updateVisibility);
-	  updateVisibility(); // initial
+	  // ✅ Construction du HTML complet de la carte
+	  container.innerHTML = `
+		<div class="profile-card-header">
+		  <div class="profile-emoji">${profile.emoji}</div>
+		  <div>
+			<div class="profile-title">${profile.name}</div>
+			<div class="profile-badge">Score global : ${
+			  metrics.globalScore || 0
+			}/100</div>
+		  </div>
+		</div>
+
+		<div class="profile-metrics">
+		  <div><strong>FTP :</strong> ${metrics.physiologie?.ftp || "-"} W</div>
+		  <div><strong>Poids :</strong> ${metrics.physiologie?.weight || "-"} kg</div>
+		  <div><strong>W/kg :</strong> ${metrics.physiologie?.wkg || 0}</div>
+		  <div><strong>Volume :</strong> ${metrics.entrainement?.volume || 0} h/sem</div>
+		</div>
+
+		<p class="profile-description">
+		  ${profile.description}
+		  ${
+			profile.percent
+			  ? `<br><span style="font-size:0.8rem;color:#6b7280;">Profil principal estimé à ${profile.percent}%.</span>`
+			  : ""
+		  }
+		</p>
+
+		<h4>Profils compatibles</h4>
+		<div class="match-list">
+		  ${matchBars || "<p>Aucune correspondance trouvée.</p>"}
+		</div>
+
+		<div id="debug-info" style="display:none;margin-top:8px;">
+		  <h4>Détails matching (debug)</h4>
+		  ${debugHtml || "<p>Aucun détail disponible.</p>"}
+		</div>
+	  `;
 	},
 
+    /**
+     * Affiche le radar chart
+     */
+    renderRadarChart(result) {
+      const canvas = document.getElementById("adn-radar-chart");
+      if (!canvas || !window.Chart) return;
 
-    renderProfileCard(result) {
-      const card = document.getElementById("profile-card");
-      if (!card) return;
+      const ctx = canvas.getContext("2d");
+      const data = result.metrics.capacites;
+      const labels = Object.keys(data);
+      const values = Object.values(data);
 
-      if (!result) {
-        card.classList.add("profile-card--empty");
-        card.innerHTML = "<p>Renseigne tes données pour découvrir ton ADN cycliste.</p>";
-        return;
-      }
+      if (window.radarChartInstance) window.radarChartInstance.destroy();
 
-      const { metrics, profile } = result;
-      card.classList.remove("profile-card--empty");
-
-      card.innerHTML = `
-        <div class="profile-card-header">
-          <div class="profile-emoji">${profile.emoji}</div>
-          <div>
-            <div class="profile-title">${profile.name}</div>
-            <div class="profile-badge">Score global : ${metrics.globalScore}/100</div>
-          </div>
-        </div>
-        <div class="profile-metrics">
-          <div><strong>FTP :</strong> ${metrics.ftp} W</div>
-          <div><strong>Poids :</strong> ${metrics.weight} kg</div>
-          <div><strong>W/kg :</strong> ${metrics.wkg}</div>
-          <div><strong>Endurance :</strong> ${metrics.endurance}/10</div>
-          <div><strong>Explosivité :</strong> ${metrics.explosivity}/10</div>
-          <div><strong>Terrain :</strong> ${metrics.preference}</div>
-        </div>
-        <p class="profile-description">${profile.description}</p>
-      `;
+      window.radarChartInstance = new Chart(ctx, {
+        type: "radar",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: "Profil du cycliste",
+              data: values,
+              fill: true,
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+            },
+          },
+        },
+      });
     },
 
-    renderRadarChart(result) {
-      const ctx = document.getElementById("adn-radar-chart");
-      if (!ctx) return;
+    /**
+     * Bascule l'affichage du debug
+     */
+    toggleDebugInfo() {
+      const debugDiv = document.getElementById("debug-info");
+      const button = document.getElementById("debug-toggle");
 
-      if (!result) {
-        if (radarChart) {
-          radarChart.destroy();
-          radarChart = null;
-        }
+      if (!debugDiv || !button) {
+        console.warn("Debug area not found");
         return;
       }
 
-      const { metrics } = result;
+      const isVisible = debugDiv.style.display === "block";
+      debugDiv.style.display = isVisible ? "none" : "block";
+      button.textContent = isVisible ? "Afficher debug" : "Masquer debug";
+    },
 
-      const data = {
-        labels: ["W/kg", "Endurance", "Explosivité", "Score global"],
-        datasets: [
-          {
-            label: "Profil cycliste",
-            data: [
-              metrics.wkg,
-              metrics.endurance,
-              metrics.explosivity,
-              metrics.globalScore / 10 // remis sur /10 pour l'échelle
-            ],
-            fill: true,
-            pointRadius: 3,
-            borderWidth: 2
-          }
-        ]
-      };
-
-      const options = {
-        responsive: true,
-        scales: {
-          r: {
-            beginAtZero: true,
-            suggestedMax: 10
-          }
-        },
-        plugins: {
-          legend: {
-            display: false
-          }
-        }
-      };
-
-      if (radarChart) {
-        radarChart.data = data;
-        radarChart.options = options;
-        radarChart.update();
-      } else {
-        radarChart = new Chart(ctx, {
-          type: "radar",
-          data,
-          options
-        });
-      }
-    }
+    // Ces fonctions existent peut-être encore pour compatibilité
+    initThemeSelector() {},
+    updateRangeLabels() {},
+    toggleTriathlonFields() {},
   };
 
   window.ADNUI = ADNUI;
