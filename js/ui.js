@@ -262,28 +262,49 @@
 
       const isSecret = !!profile.hidden;
 
-      const matchBars = (matches || [])
-        .map((m) => {
-          const safePercent = isNaN(m.percent)
-            ? 0
-            : Math.max(2, Math.min(100, m.percent));
-          const color =
-            getComputedStyle(
-              document.documentElement
-            ).getPropertyValue("--accent-color") || "#2563eb";
-          return `
-        <div class="match-bar">
-          <div class="match-bar-label">${m.emoji || "🚴‍♂️"} ${
-            m.name
-          }</div>
-          <div class="match-bar-track">
-            <div class="match-bar-fill" style="width:${safePercent}%;background:${color.trim()};"></div>
-          </div>
-          <div class="match-bar-percent">${safePercent}%</div>
-        </div>
-      `;
-        })
-        .join("");
+      // Séparer profils normaux / cachés
+	const normalMatches = (matches || []).filter(m => !m.hidden);
+	const hiddenMatches = (matches || []).filter(m => m.hidden);
+
+	let matchBars = "";
+
+	if (normalMatches.length) {
+	  matchBars += normalMatches.map((m) => {
+		const safePercent = isNaN(m.percent)
+		  ? 0
+		  : Math.max(2, Math.min(100, m.percent));
+		const color =
+		  getComputedStyle(document.documentElement).getPropertyValue("--accent-color") || "#2563eb";
+		return `
+		  <div class="match-bar">
+			<div class="match-bar-label">${m.emoji || "🚴‍♂️"} ${m.name}</div>
+			<div class="match-bar-track">
+			  <div class="match-bar-fill" style="width:${safePercent}%;background:${color.trim()};"></div>
+			</div>
+			<div class="match-bar-percent">${safePercent}%</div>
+		  </div>`;
+	  }).join("");
+	}
+
+	if (hiddenMatches.length) {
+	  matchBars += `
+		<h5 style="margin-top:1rem;color:var(--accent-color);font-size:0.9rem;">
+		  Profils spéciaux débloqués 🌟
+		</h5>
+	  `;
+
+	  matchBars += hiddenMatches.map((m) => {
+		const percent = isNaN(m.percent) ? 0 : Math.max(2, Math.min(100, m.percent));
+		return `
+		  <div class="match-bar secret">
+			<div class="match-bar-label">${m.emoji || "🌟"} ${m.name}</div>
+			<div class="match-bar-percent">${percent}%</div>
+		  </div>
+		  <p class="hidden-desc">${m.description || "Profil légendaire sans description."}</p>
+		`;
+	  }).join("");
+	}
+
 
       const mainMatch =
         matches && matches.length ? matches[0] : null;
@@ -329,7 +350,7 @@
       }">
         <div class="profile-card-header">
           <div class="profile-emoji">${profile.emoji ||
-            "🚴‍♂️"}</div>
+            "🚴‍"}</div>
           <div>
             <div class="profile-title">
               ${isSecret ? "🌟 " : ""}${profile.name}
@@ -515,7 +536,7 @@
       container.innerHTML = `
       <div class="pro-compare-card">
         <span class="pro-emoji">${pro.emoji ||
-          "🚴‍♂️"}</span>
+          "🚴‍"}</span>
         <strong>${pro.name}</strong>
         <span class="pro-similarity" style="color:${color};">
           ${similarity}% de similarité

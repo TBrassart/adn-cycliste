@@ -1060,112 +1060,6 @@
 
     "hidden": false
   },
-  {
-    "id": "baroudeur",
-    "name": "Baroudeur",
-    "emoji": "️👻",   
-
-    "conditions": {
-      // 💪 --- PHYSIOLOGIE ---
-      //"minFtp": 9000,
-      //"maxFtp": 0,
-      //"minWeight": 150,
-      //"maxWeight": 80,
-      "minWkg": 3.5,
-      "maxWkg": 5.0,
-      //"minAge": 60,
-      //"maxAge": 65,
-      //"sexe": "M",
-      "preference": "valloné",
-
-      // 🧬 --- CAPACITÉS ---
-      "minEndurance": 6,
-      "maxEndurance": 9,
-      "minExplosivite": 6,
-      "maxExplosivite": 9,
-      "minAerobie": 6,
-      "maxAerobie": 9,
-      "minSprint": 4,
-      "maxSprint": 8,
-
-      // ⚙️ --- TECHNIQUE / CONFIANCE ---
-      "minAero": 4,
-      "maxAero": 7,
-      "minTechnique": 5,
-      "maxTechnique": 8,
-      "minConfidence": 7,
-      "maxConfidence": 10,
-
-      // 🕒 --- ENTRAÎNEMENT ---
-      //"minVolume": 20,
-      //"maxVolume": 1,
-      "minRecuperation": 3,
-      "maxRecuperation": 8,
-
-      // 🏊 --- TRIATHLON (optionnel) ---
-      //"triathlon": true,
-      //"triDistance": "M",
-      //"minTriTime": 90,
-      //"maxTriTime": 360
-    },
-
-    "description": "Instinctif, courageux et imprévisible, tu attaques de loin et crois toujours en ton coup. Le baroudeur vit pour le panache, pas pour le calcul.",
-
-    "hidden": false
-  },
-  {
-    "id": "leader",
-    "name": "Capitaine de route",
-    "emoji": "️👨‍✈️",   
-
-    "conditions": {
-      // 💪 --- PHYSIOLOGIE ---
-      //"minFtp": 9000,
-      //"maxFtp": 0,
-      //"minWeight": 150,
-      //"maxWeight": 80,
-      //"minWkg": 3.5,
-      "maxWkg": 5.0,
-      //"minAge": 60,
-      //"maxAge": 65,
-      //"sexe": "M",
-      //"preference": "valloné",
-
-      // 🧬 --- CAPACITÉS ---
-      "minEndurance": 6,
-      "maxEndurance": 9,
-      "minExplosivite": 3,
-      "maxExplosivite": 6,
-      "minAerobie": 6,
-      "maxAerobie": 9,
-      "minSprint": 3,
-      "maxSprint": 7,
-
-      // ⚙️ --- TECHNIQUE / CONFIANCE ---
-      "minAero": 4,
-      "maxAero": 8,
-      "minTechnique": 8,
-      "maxTechnique": 10,
-      "minConfidence": 8,
-      "maxConfidence": 10,
-
-      // 🕒 --- ENTRAÎNEMENT ---
-      //"minVolume": 20,
-      //"maxVolume": 1,
-      "minRecuperation": 5,
-      "maxRecuperation": 9,
-
-      // 🏊 --- TRIATHLON (optionnel) ---
-      //"triathlon": true,
-      //"triDistance": "M",
-      //"minTriTime": 90,
-      //"maxTriTime": 360
-    },
-
-    "description": "Calme et inspirant, tu guides les autres par l’exemple. Stratège, pédagogue et solide, tu es le capitaine de route qui fait grandir son équipe.",
-
-    "hidden": false
-  },
 // === FUN & EASTER EGGS ===
   {
     "id": "licorne-cols",
@@ -1347,8 +1241,8 @@
       // 🧬 --- CAPACITÉS ---
       "minEndurance": 6,
       "maxEndurance": 8,
-      "minExplosivite": 1,
-      "maxExplosivite": 5,
+      "minExplosivite": 5,
+      "maxExplosivite": 2,
       "minAerobie": 7,
       "maxAerobie": 10,
       "minSprint": 3,
@@ -1419,6 +1313,59 @@
       "minVolume": 20,
       //"maxVolume": 12,
       "minRecuperation": 6,
+      //"maxRecuperation": 7,
+
+      // 🏊 --- TRIATHLON (optionnel) ---
+      //"triathlon": true,
+      //"triDistance": "M",
+      //"minTriTime": 90,
+      //"maxTriTime": 360
+    },
+
+    "description": "Tu passes plus de temps sur TrainingPeaks que sur la selle.",
+
+    "hidden": true
+  },
+  {
+    "id": "capteur-ko",
+    "name": "Capteur KO",
+    "emoji": "️⚙️",   
+
+    "conditions": {
+      // 💪 --- PHYSIOLOGIE ---
+      //"minFtp": 200,
+      "maxFtp": 0,
+      //"minWeight": 70,
+      //"maxWeight": 80,
+      //"minWkg": 4.0,
+      //"maxWkg": 5.0,
+      //"minAge": 18,
+      //"maxAge": 65,
+      //"sexe": "M",
+      //"preference": "plat",
+
+      // 🧬 --- CAPACITÉS ---
+      //"minEndurance": 4,
+      //"maxEndurance": 5,
+      //"minExplosivite": 6,
+      //"maxExplosivite": 6,
+      //"minAerobie": 8,
+      //"maxAerobie": 8,
+      //"minSprint": 5,
+      //"maxSprint": 6,
+
+      // ⚙️ --- TECHNIQUE / CONFIANCE ---
+      //"minAero": 10,
+      //"maxAero": 7,
+      //"minTechnique": 8,
+      //"maxTechnique": 8,
+      //"minConfidence": 8,
+      //"maxConfidence": 7,
+
+      // 🕒 --- ENTRAÎNEMENT ---
+      //"minVolume": 20,
+      //"maxVolume": 12,
+      //"minRecuperation": 6,
       //"maxRecuperation": 7,
 
       // 🏊 --- TRIATHLON (optionnel) ---

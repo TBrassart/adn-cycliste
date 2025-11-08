@@ -91,38 +91,45 @@
      * profiles: tableau chargé depuis profiles.json
      */
 	findProfile(metrics, profiles) {
-	  if (!profiles || !profiles.length) return [];
+	  if (!profiles || !profiles.length || !window.matchingWeights) {
+		return [];
+	  }
 
 	  const results = profiles.map((profile) => {
+		const cond = profile.conditions || {};
 		const { total, breakdown, details } =
-		  window.matchingWeights.computeWeightedScore(metrics, profile.conditions || {});
+		  window.matchingWeights.computeWeightedScore(metrics, cond);
+
 		return {
 		  id: profile.id,
 		  name: profile.name,
 		  emoji: profile.emoji,
 		  description: profile.description,
-		  hidden: profile.hidden || false,
-		  total,
+		  hidden: !!profile.hidden,
+		  total,          // 0 → 1
 		  breakdown,
 		  details
 		};
 	  });
 
-	  // 🔹 Normalisation des scores
-	  results.sort((a, b) => b.total - a.total);
-	  const maxScore = results.length ? Math.max(...results.map((r) => r.total)) : 0.0001;
+	// Trier par score décroissant
+	results.sort((a, b) => b.total - a.total);
 
-	  results.forEach((r) => {
-		r.percent = maxScore > 0 ? +((r.total / maxScore) * 100).toFixed(1) : 0;
-	  });
+	// Pourcentage absolu (0–100)
+	results.forEach((r) => {
+	  r.percent = +(r.total * 100).toFixed(1);
+	});
 
-	  // 🔹 Filtrer les easter eggs (hidden)
-	  const visible = results.filter((r) => !r.hidden || r.percent >= 95);
+	// Séparer les profils visibles et easter eggs
+	const standardProfiles = results.filter((r) => !r.hidden);
+	const hiddenProfiles = results.filter((r) => r.hidden && r.percent >= 95);
 
-	  // 🔹 Limiter à 5 meilleurs profils
-	  const limited = visible.slice(0, 5);
+	// Limiter à top 5 standards
+	const topProfiles = standardProfiles.slice(0, 5);
 
-	  return limited;
+	// ✅ Fusion finale : d'abord les top 5, puis les secrets débloqués
+	return [...topProfiles, ...hiddenProfiles];
+
 	},
 
     /**
@@ -136,7 +143,7 @@
 	  const main = matches.length > 0 ? matches[0] : {
 		id: "polyvalent",
 		name: "Polyvalent",
-		emoji: "🚴‍♂️",
+		emoji: "🚴‍",
 		description: "Profil équilibré : continue à t’entraîner pour affiner ton ADN cycliste.",
 		percent: 0
 	  };

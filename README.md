@@ -1,5 +1,7 @@
 Créer un “score de personnalité” cycliste à partir du résumé pour des badges 🏅
 
+ajouter la possibilité de créer des nouveaux profils aux utilisateurs, ceux ci seraient alors proposés et envoyés pour intégration par la suite
+
 🏁 A. Mode “Progression” / Historique local
 
 Permettre à l’utilisateur d’enregistrer ses analyses successives (stockées en localStorage).

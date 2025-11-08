@@ -683,3 +683,21 @@ body.exporting {
   border-top-color: rgba(75,85,99,0.4);
   color: #9ca3af;
 }
+
+/* === Description des profils spéciaux === */
+.hidden-desc {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin: 0.2rem 0 0.8rem 1rem;
+  line-height: 1.3;
+}
+
+.dark .hidden-desc {
+  color: #d1d5db;
+}
+
+.match-bar.secret {
+  opacity: 0.9;
+  border-left: 3px solid gold;
+  padding-left: 0.4rem;
+}

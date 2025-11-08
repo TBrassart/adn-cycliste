@@ -9,248 +9,1704 @@
   // 🔹 Inline fallback complet — 30 profils dont 10 easter eggs
 	profiles = [
 		// === PHYSIOLOGIQUES ===
-		{
-		  id: "grimpeur",
-		  name: "Grimpeur",
-		  emoji: "🧗",
-		  conditions: { minWkg: 4, minEndurance: 6, preference: "montagne" },
-		  description: "Tu es léger et constant, les pentes te sourient."
-		},
-		{
-		  id: "diesel",
-		  name: "Rouleur diesel",
-		  emoji: "🚂",
-		  conditions: { minEndurance: 8, maxExplosivite: 6, minVolume: 8 },
-		  description: "Tu carbures à la régularité et à la puissance longue."
-		},
-		{
-		  id: "sprinteur",
-		  name: "Sprinteur explosif",
-		  emoji: "💥",
-		  conditions: { minSprint: 8, minExplosivite: 8, maxEndurance: 6 },
-		  description: "Tu brilles dans les 200 derniers mètres, puissance pure !"
-		},
-		{
-		  id: "puncheur",
-		  name: "Puncheur",
-		  emoji: "⚡",
-		  conditions: { minExplosivite: 7, minEndurance: 5, minWkg: 3.2 },
-		  description: "Tu adores les côtes courtes où tu peux faire parler ton punch."
-		},
-		{
-		  id: "chrono",
-		  name: "Rider chrono",
-		  emoji: "⏱️",
-		  conditions: { minAero: 7, minEndurance: 6, preference: "plat" },
-		  description: "Tu files droit, tête baissée, comme une lame dans le vent."
-		},
-		{
-		  id: "grimpeur-puncheur",
-		  name: "Grimpeur-puncheur",
-		  emoji: "🧗‍♀️⚡",
-		  conditions: { minWkg: 4, minExplosivite: 7, preference: "montagne" },
-		  description: "Tu voles dans les cols mais attaques sur les rampes raides."
-		},
-		{
-		  id: "endurant",
-		  name: "Endurant infatigable",
-		  emoji: "🕰️",
-		  conditions: { minVolume: 10, minRecuperation: 7, minEndurance: 8 },
-		  description: "Tu es une machine à rouler, tu ne t’arrêtes jamais."
+	{
+		"id": "grimpeur",
+		"name": "Grimpeur",
+		"emoji": "🧗",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 400,
+		  //"minWeight": 55,
+		  "maxWeight": 70,
+		  //"minWkg": 3.5,
+		  //"maxWkg": 6.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  "sexe": "M",
+		  "preference": "montagne",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 6,
+		  //"maxEndurance": 10,
+		  //"minExplosivite": 5,
+		  //"maxExplosivite": 10,
+		  "minAerobie": 7,
+		  //"maxAerobie": 10,
+		  //"minSprint": 6,
+		  //"maxSprint": 10,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 6,
+		  //"maxAero": 10,
+		  "minTechnique": 8,
+		  //"maxTechnique": 10,
+		  "minConfidence": 6,
+		  //"maxConfidence": 10,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 6,
+		  //"maxVolume": 12,
+		  //"minRecuperation": 6,
+		  //"maxRecuperation": 10,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
 		},
 
-		// === TECHNIQUES / DISCIPLINES ===
-		{
-		  id: "triathlete",
-		  name: "Triathlète endurant",
-		  emoji: "🏊🚴🏃",
-		  conditions: { triathlon: true, minAerobie: 7, minVolume: 6, minAero: 7 },
-		  description: "Endurant, régulier et concentré : tu domines la durée."
-		},
-		{
-		  id: "descendeur",
-		  name: "Descendeur technique",
-		  emoji: "🚵",
-		  conditions: { minConfidence: 8, minTechnique: 7 },
-		  description: "Tu es à l’aise dans les virages, la gravité est ton alliée."
-		},
-		{
-		  id: "gravel",
-		  name: "Aventurier gravel",
-		  emoji: "🪨",
-		  conditions: { minEndurance: 7, minConfidence: 6, minVolume: 5, minTechnique: 6 },
-		  description: "Tu cherches les chemins perdus, le bitume te fatigue."
-		},
-		{
-		  id: "cx",
-		  name: "Cyclocross Wizard",
-		  emoji: "🌀",
-		  conditions: { minTechnique: 7, minExplosivite: 6, minConfidence: 6 },
-		  description: "Tu passes partout, dans la boue comme sur l’asphalte."
-		},
-		{
-		  id: "aero-freak",
-		  name: "Aero Freak",
-		  emoji: "💨",
-		  conditions: { minAero: 9, minTechnique: 5 },
-		  description: "Tu t’intéresses plus à ton CdA qu’à ton FTP."
-		},
-		{
-		  id: "rouleur",
-		  name: "Rouleur",
-		  emoji: "🚴",
-		  conditions: { minAero: 7, minEndurance: 7, preference: "plat" },
-		  description: "Tu maîtrises les longues lignes droites et les relais à fond."
-		},
-		{
-		  id: "grimpeur-diesel",
-		  name: "Diesel des montagnes",
-		  emoji: "🏔️🚂",
-		  conditions: { minWkg: 4, minEndurance: 8, minVolume: 7 },
-		  description: "Tu montes sans éclat, mais personne ne t’arrête."
+		"description": "Texte libre qui décrit le profil de manière humaine et stylée.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "diesel",
+		"name": "Rouleur diesel",
+		"emoji": "🚂",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 400,
+		  //"minWeight": 55,
+		  //"maxWeight": 85,
+		  //"minWkg": 3.5,
+		  "maxWkg": 4.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  "preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 6,
+		  //"maxEndurance": 10,
+		  //"minExplosivite": 5,
+		  "maxExplosivite": 5,
+		  "minAerobie": 7,
+		  //"maxAerobie": 10,
+		  //"minSprint": 6,
+		  "maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  "minAero": 6,
+		  "maxAero": 10,
+		  "minTechnique": 6,
+		  "maxTechnique": 8,
+		  //"minConfidence": 6,
+		  "maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 6,
+		  //"maxVolume": 12,
+		  //"minRecuperation": 6,
+		  "maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  "triathlon": true,
+		  "triDistance": "M",
+		  "minTriTime": 90,
+		  "maxTriTime": 360
 		},
 
-		// === MENTAUX / COMPORTEMENT ===
-		{
-		  id: "strategiste",
-		  name: "Stratège du peloton",
-		  emoji: "🧠",
-		  conditions: { minEndurance: 6, minExplosivite: 5, minAerobie: 6 },
-		  description: "Tu lis la course, tu attaques au bon moment. Rien n’est laissé au hasard."
-		},
-		{
-		  id: "minimaliste",
-		  name: "Minimaliste zen",
-		  emoji: "🧘",
-		  conditions: { maxVolume: 5, minEndurance: 6, preference: "plat" },
-		  description: "Tu roules pour le plaisir, pas pour le FTP."
-		},
-		{
-		  id: "mental-warrior",
-		  name: "Guerrier mental",
-		  emoji: "🔥",
-		  conditions: { minEndurance: 6, minRecuperation: 7, minConfidence: 6 },
-		  description: "Tu n’abandonnes jamais, même dans la souffrance."
-		},
-		{
-		  id: "ultra",
-		  name: "Ultra cycliste",
-		  emoji: "🗺️",
-		  conditions: { minVolume: 12, minEndurance: 9, minRecuperation: 8 },
-		  description: "Tu roules pour traverser des pays, pas des segments Strava."
-		},
-		{
-		  id: "urbain",
-		  name: "Rider urbain",
-		  emoji: "🚦",
-		  conditions: { minExplosivite: 5, minConfidence: 5, minTechnique: 5 },
-		  description: "Tu traces entre les voitures comme un ninja sur deux roues."
-		},
-		{
-		  id: "nocturne",
-		  name: "Rider nocturne",
-		  emoji: "🌙",
-		  conditions: { minConfidence: 5, minEndurance: 5 },
-		  description: "Tu aimes la route calme et les sorties après le coucher du soleil."
+		"description": "Tu carbures à la régularité et à la puissance longue.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "sprinteur",
+		"name": "Sprinteur explosif",
+		"emoji": "💥",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 400,
+		  "minWeight": 70,
+		  //"maxWeight": 85,
+		  //"minWkg": 3.5,
+		  //"maxWkg": 4.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  "preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 6,
+		  //"maxEndurance": 10,
+		  "minExplosivite": 8,
+		  //"maxExplosivite": 5,
+		  //"minAerobie": 7,
+		  "maxAerobie": 5,
+		  "minSprint": 8,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  "minAero": 6,
+		  //"maxAero": 10,
+		  "minTechnique": 7,
+		  //"maxTechnique": 8,
+		  "minConfidence": 6,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 6,
+		  //"maxVolume": 12,
+		  //"minRecuperation": 6,
+		  "maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
 		},
 
-		// === FUN & EASTER EGGS ===
-		{
-		  id: "licorne-cols",
-		  name: "Licorne des cols",
-		  emoji: "🦄",
-		  hidden: true,
-		  conditions: { minWkg: 4.6, minExplosivite: 9, minEndurance: 8 },
-		  description: "Tu brilles plus fort que ton capteur de puissance ✨."
+		"description": "Tu brilles dans les 200 derniers mètres, puissance pure !",
+
+		"hidden": false
+	  },
+	  {
+		"id": "puncheur",
+		"name": "Puncheur",
+		"emoji": "⚡",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 400,
+		  //"minWeight": 70,
+		  //"maxWeight": 85,
+		  //"minWkg": 3.5,
+		  //"maxWkg": 4.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  "preference": "vallonné",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 6,
+		  "maxEndurance": 5,
+		  "minExplosivite": 8,
+		  //"maxExplosivite": 5,
+		  //"minAerobie": 7,
+		  "maxAerobie": 5,
+		  "minSprint": 8,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  "minAero": 4,
+		  "maxAero": 7,
+		  "minTechnique": 7,
+		  //"maxTechnique": 8,
+		  "minConfidence": 7,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 6,
+		  //"maxVolume": 12,
+		  //"minRecuperation": 6,
+		  "maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
 		},
-		{
-		  id: "caffeine-rider",
-		  name: "Caféinisé permanent",
-		  emoji: "☕",
-		  hidden: true,
-		  conditions: { minVolume: 3, minExplosivite: 3, minEndurance: 3 },
-		  description: "Tu ne pédales pas, tu vibres. Probablement trop de café."
+
+		"description": "Tu adores les côtes courtes où tu peux faire parler ton punch.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "chrono",
+		"name": "Rider chrono",
+		"emoji": "⏱️",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  "minFtp": 300,
+		  //"maxFtp": 400,
+		  //"minWeight": 70,
+		  //"maxWeight": 85,
+		  //"minWkg": 3.5,
+		  //"maxWkg": 4.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  "preference": "vallonné",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 6,
+		  "maxEndurance": 5,
+		  "minExplosivite": 8,
+		  //"maxExplosivite": 5,
+		  "minAerobie": 7,
+		  //"maxAerobie": 5,
+		  "minSprint": 3,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  "minAero": 7,
+		  //"maxAero": 7,
+		  "minTechnique": 4,
+		  //"maxTechnique": 8,
+		  "minConfidence": 4,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 6,
+		  //"maxVolume": 12,
+		  //"minRecuperation": 6,
+		  "maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
 		},
-		{
-		  id: "zwift-warrior",
-		  name: "Zwift Warrior",
-		  emoji: "🖥️🚴",
-		  hidden: true,
-		  conditions: { minAero: 6, minVolume: 30, preference: "home trainer" },
-		  description: "Tu connais plus Watopia que ta propre région."
+
+		"description": "Tu files droit, tête baissée, comme une lame dans le vent.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "grimpeur-puncheur",
+		"name": "Grimpeur-puncheur",
+		"emoji": "🧗‍⚡",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 300,
+		  //"maxFtp": 400,
+		  //"minWeight": 70,
+		  "maxWeight": 80,
+		  "minWkg": 3.5,
+		  //"maxWkg": 4.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  "preference": "montagne",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 6,
+		  "maxEndurance": 5,
+		  "minExplosivite": 4,
+		  //"maxExplosivite": 5,
+		  "minAerobie": 4,
+		  //"maxAerobie": 5,
+		  "minSprint": 3,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 7,
+		  //"maxAero": 7,
+		  //"minTechnique": 4,
+		  //"maxTechnique": 8,
+		  "minConfidence": 4,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 6,
+		  //"maxVolume": 12,
+		  "minRecuperation": 3,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
 		},
-		{
-		  id: "gravel-poet",
-		  name: "Poète du gravel",
-		  emoji: "📜🚴",
-		  hidden: true,
-		  conditions: { minEndurance: 6, minVolume: 5, minConfidence: 7 },
-		  description: "Tu postes des haïkus après chaque sortie poussiéreuse."
+
+		"description": "Tu voles dans les cols mais attaques sur les rampes raides.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "endurant",
+		"name": "Endurant infatigable",
+		"emoji": "🧗‍⚡",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 300,
+		  //"maxFtp": 400,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  //"minWkg": 3.5,
+		  //"maxWkg": 4.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "montagne",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 9,
+		  //"maxEndurance": 5,
+		  //"minExplosivite": 4,
+		  //"maxExplosivite": 5,
+		  //"minAerobie": 4,
+		  //"maxAerobie": 5,
+		  //"minSprint": 3,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  "minAero": 7,
+		  //"maxAero": 7,
+		  "minTechnique": 4,
+		  //"maxTechnique": 8,
+		  //"minConfidence": 4,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 6,
+		  //"maxVolume": 12,
+		  "minRecuperation": 6,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
 		},
-		{
-		  id: "chrono-nerd",
-		  name: "Chrono Nerd",
-		  emoji: "⌚",
-		  hidden: true,
-		  conditions: { minAero: 8, minTechnique: 5, minEndurance: 6 },
-		  description: "Tu passes plus de temps sur TrainingPeaks que sur la selle."
+
+		"description": "Tu es une machine à rouler, tu ne t’arrêtes jamais.",
+
+		"hidden": false
+	  },
+	// === TECHNIQUES / DISCIPLINES ===
+	  {
+		"id": "triathlete",
+		"name": "Triathlète endurant",
+		"emoji": "🏊🚴🏃",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  "minFtp": 200,
+		  //"maxFtp": 400,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  //"minWkg": 3.5,
+		  //"maxWkg": 4.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  "preference": "vallonné",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 7,
+		  //"maxEndurance": 5,
+		  //"minExplosivite": 4,
+		  //"maxExplosivite": 5,
+		  "minAerobie": 4,
+		  //"maxAerobie": 5,
+		  //"minSprint": 3,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  "minAero": 7,
+		  //"maxAero": 7,
+		  "minTechnique": 4,
+		  //"maxTechnique": 8,
+		  //"minConfidence": 4,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  "minVolume": 10,
+		  //"maxVolume": 12,
+		  "minRecuperation": 4,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  "triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
 		},
-		{
-		  id: "team-bidons",
-		  name: "Membre de l'équipe bidons",
-		  emoji: "🍼",
-		  hidden: true,
-		  conditions: { maxEndurance: 5, maxExplosivite: 4, minVolume: 2 },
-		  description: "Tu es là pour l'ambiance. Et c’est déjà énorme ❤️."
+
+		"description": "Endurant, régulier et concentré : tu domines la durée.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "descendeur",
+		"name": "Descendeur technique",
+		"emoji": "🚵",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 400,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  //"minWkg": 3.5,
+		  "maxWkg": 5.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  "preference": "montagne",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 7,
+		  //"maxEndurance": 5,
+		  //"minExplosivite": 4,
+		  //"maxExplosivite": 5,
+		  "minAerobie": 4,
+		  "maxAerobie": 8,
+		  //"minSprint": 3,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  "minAero": 7,
+		  //"maxAero": 7,
+		  "minTechnique": 8,
+		  //"maxTechnique": 8,
+		  "minConfidence": 8,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 10,
+		  //"maxVolume": 12,
+		  "minRecuperation": 4,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
 		},
-		{
-		  id: "capteur-ko",
-		  name: "Capteur KO",
-		  emoji: "⚙️",
-		  hidden: true,
-		  conditions: { maxFtp: 0 },
-		  description: "Ton capteur a explosé. Trop de watts sans contrôle."
+
+		"description": "Tu es à l’aise dans les virages, la gravité est ton alliée.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "gravel",
+		"name": "Aventurier gravel",
+		"emoji": "🌍",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 400,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  //"minWkg": 3.5,
+		  //"maxWkg": 5.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  "preference": "vallonné",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 4,
+		  //"maxEndurance": 5,
+		  //"minExplosivite": 4,
+		  //"maxExplosivite": 5,
+		  "minAerobie": 4,
+		  //"maxAerobie": 8,
+		  //"minSprint": 3,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 7,
+		  //"maxAero": 7,
+		  "minTechnique": 6,
+		  //"maxTechnique": 8,
+		  "minConfidence": 6,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 10,
+		  //"maxVolume": 12,
+		  //"minRecuperation": 4,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
 		},
-		{
-		  id: "lanterne-rouge",
-		  name: "Lanterne rouge",
-		  emoji: "🚦",
-		  hidden: true,
-		  conditions: { maxEndurance: 3, maxExplosivite: 3 },
-		  description: "Tu finis toujours, même si c’est dernier. Respect éternel."
+
+		"description": "Tu cherches les chemins perdus, le bitume te fatigue.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "cx",
+		"name": "Cyclocross Wizard",
+		"emoji": "🌀",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 400,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  "minWkg": 4.0,
+		  //"maxWkg": 5.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  "preference": "vallonné",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 4,
+		  //"maxEndurance": 5,
+		  "minExplosivite": 6,
+		  //"maxExplosivite": 5,
+		  "minAerobie": 5,
+		  //"maxAerobie": 8,
+		  "minSprint": 5,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 7,
+		  //"maxAero": 7,
+		  "minTechnique": 6,
+		  //"maxTechnique": 8,
+		  "minConfidence": 6,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 10,
+		  //"maxVolume": 12,
+		  //"minRecuperation": 4,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
 		},
-		{
-		  id: "ftp-over9000",
-		  name: "FTP Over 9000",
-		  emoji: "🔥🤖",
-		  hidden: true,
-		  conditions: { minFtp: 9000 },
-		  description: "Impossible. Tu es un dieu du watt. Les capteurs fondent à ton approche."
+
+		"description": "Tu passes partout, dans la boue comme sur l’asphalte.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "aero-freak",
+		"name": "Aero Freak",
+		"emoji": "💨",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 400,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  //"minWkg": 4.0,
+		  //"maxWkg": 5.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 4,
+		  //"maxEndurance": 5,
+		  //"minExplosivite": 6,
+		  "maxExplosivite": 5,
+		  "minAerobie": 5,
+		  //"maxAerobie": 8,
+		  //"minSprint": 5,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  "minAero": 8,
+		  //"maxAero": 7,
+		  "minTechnique": 6,
+		  //"maxTechnique": 8,
+		  "minConfidence": 6,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 10,
+		  //"maxVolume": 12,
+		  "minRecuperation": 4,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
 		},
-		{
-		  id: "ghost-rider",
-		  name: "Coureur fantôme",
-		  emoji: "👻",
-		  hidden: true,
-		  conditions: { minWkg: 4, volume: 0 },
-		  description: "Tu ne t’entraînes jamais, mais tu voles. Mystère."
+
+		"description": "Tu t’intéresses plus à ton CdA qu’à ton FTP.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "rouleur",
+		"name": "Rouleur",
+		"emoji": "🚴",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 400,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  "minWkg": 3.0,
+		  //"maxWkg": 5.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 4,
+		  //"maxEndurance": 5,
+		  //"minExplosivite": 6,
+		  //"maxExplosivite": 5,
+		  "minAerobie": 6,
+		  //"maxAerobie": 8,
+		  //"minSprint": 5,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  "minAero": 2,
+		  //"maxAero": 7,
+		  //"minTechnique": 6,
+		  //"maxTechnique": 8,
+		  "minConfidence": 3,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 10,
+		  //"maxVolume": 12,
+		  "minRecuperation": 3,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
 		},
-		{
-		  id: "velo-poilu",
-		  name: "Vélo poilu",
-		  emoji: "🦍",
-		  hidden: true,
-		  conditions: { minExplosivite: 7, minSprint: 7, minConfidence: 7 },
-		  description: "T’es un monstre. Et probablement torse nu sous 5°C."
+
+		"description": "Puissant et constant, le rouleur est le métronome du peloton. Il maintient un haut niveau de puissance sur le plat et sert de moteur dans les longues échappées.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "grimpeur-diesel",
+		"name": "Diesel des montagnes",
+		"emoji": "🏔️🚂",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 400,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  "minWkg": 4.0,
+		  //"maxWkg": 5.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 4,
+		  //"maxEndurance": 5,
+		  //"minExplosivite": 6,
+		  "maxExplosivite": 5,
+		  "minAerobie": 6,
+		  //"maxAerobie": 8,
+		  //"minSprint": 5,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 2,
+		  //"maxAero": 7,
+		  "minTechnique": 4,
+		  //"maxTechnique": 8,
+		  //"minConfidence": 3,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 10,
+		  //"maxVolume": 12,
+		  "minRecuperation": 6,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
 		},
-		{
-		  id: "noel-rider",
-		  name: "Père Noël du peloton",
-		  emoji: "🎅🚴",
-		  hidden: true,
-		  conditions: { minEndurance: 5, preference: "montagne" },
-		  description: "Tu roules même sous la neige, costume rouge en prime."
-		}
+
+		"description": "Puissant et constant, le rouleur est le métronome du peloton. Il maintient un haut niveau de puissance sur le plat et sert de moteur dans les longues échappées.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "strategiste",
+		"name": "Stratège du peloton",
+		"emoji": "🧠",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 400,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  //"minWkg": 4.0,
+		  //"maxWkg": 5.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 6,
+		  //"maxEndurance": 5,
+		  //"minExplosivite": 6,
+		  "maxExplosivite": 6,
+		  "minAerobie": 3,
+		  //"maxAerobie": 8,
+		  //"minSprint": 5,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 2,
+		  //"maxAero": 7,
+		  "minTechnique": 8,
+		  //"maxTechnique": 8,
+		  "minConfidence": 6,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 10,
+		  //"maxVolume": 12,
+		  "minRecuperation": 7,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Tu lis la course, tu attaques au bon moment. Rien n’est laissé au hasard.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "minimaliste",
+		"name": "Minimaliste zen",
+		"emoji": "🧘",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  "maxFtp": 300,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  //"minWkg": 4.0,
+		  "maxWkg": 3.5,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 6,
+		  "maxEndurance": 6,
+		  //"minExplosivite": 6,
+		  "maxExplosivite": 6,
+		  //"minAerobie": 3,
+		  //"maxAerobie": 8,
+		  //"minSprint": 5,
+		  "maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 2,
+		  //"maxAero": 7,
+		  //"minTechnique": 8,
+		  "maxTechnique": 5,
+		  //"minConfidence": 6,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 10,
+		  //"maxVolume": 12,
+		  "minRecuperation": 7,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Tu roules pour le plaisir, pas pour le FTP.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "ultra",
+		"name": "Ultra cycliste",
+		"emoji": "🗺",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 300,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  //"minWkg": 2.5,
+		  //"maxWkg": 4.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 8,
+		  //"maxEndurance": 6,
+		  //"minExplosivite": 6,
+		  //"maxExplosivite": 6,
+		  //"minAerobie": 3,
+		  //"maxAerobie": 8,
+		  //"minSprint": 5,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  "minAero": 4,
+		  //"maxAero": 10,
+		  "minTechnique": 4,
+		  "maxTechnique": 8,
+		  "minConfidence": 6,
+		  "maxConfidence": 9,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  "minVolume": 10,
+		  //"maxVolume": 12,
+		  "minRecuperation": 7,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Tu roules pour traverser des pays, pas des segments Strava.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "mental-warrior",
+		"name": "Guerrier mental",
+		"emoji": "🔥",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 300,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  "minWkg": 2.5,
+		  "maxWkg": 4.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 8,
+		  //"maxEndurance": 6,
+		  //"minExplosivite": 6,
+		  //"maxExplosivite": 6,
+		  "minAerobie": 3,
+		  "maxAerobie": 8,
+		  "minSprint": 4,
+		  "maxSprint": 8,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  "minAero": 4,
+		  //"maxAero": 10,
+		  "minTechnique": 4,
+		  "maxTechnique": 8,
+		  "minConfidence": 6,
+		  "maxConfidence": 9,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 10,
+		  "maxVolume": 12,
+		  "minRecuperation": 1,
+		  "maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Tu roules pour traverser des pays, pas des segments Strava.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "urbain",
+		"name": "Rider urbain",
+		"emoji": "🚦",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 300,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  "minWkg": 2.5,
+		  "maxWkg": 4.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 8,
+		  //"maxEndurance": 6,
+		  "minExplosivite": 6,
+		  //"maxExplosivite": 6,
+		  "minAerobie": 3,
+		  "maxAerobie": 6,
+		  "minSprint": 5,
+		  "maxSprint": 9,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 4,
+		  //"maxAero": 10,
+		  "minTechnique": 5,
+		  "maxTechnique": 10,
+		  "minConfidence": 7,
+		  "maxConfidence": 10,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 10,
+		  //"maxVolume": 12,
+		  "minRecuperation": 7,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Agile, réactif et intuitif, le rider urbain navigue dans la circulation comme un poisson dans l’eau. Il mise sur le flow, le contrôle et la créativité plus que sur la puissance brute.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "nocturne",
+		"name": "Rider nocturne",
+		"emoji": "🌙",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 300,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  "minWkg": 2.5,
+		  "maxWkg": 4.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 8,
+		  //"maxEndurance": 6,
+		  "minExplosivite": 1,
+		  "maxExplosivite": 5,
+		  "minAerobie": 6,
+		  "maxAerobie": 10,
+		  "minSprint": 1,
+		  "maxSprint": 5,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 4,
+		  //"maxAero": 10,
+		  "minTechnique": 3,
+		  "maxTechnique": 6,
+		  "minConfidence": 7,
+		  "maxConfidence": 10,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 10,
+		  //"maxVolume": 12,
+		  "minRecuperation": 5,
+		  "maxRecuperation": 8,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Tu aimes la route calme et les sorties après le coucher du soleil.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "baroudeur",
+		"name": "Baroudeur",
+		"emoji": "️🚀",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 9000,
+		  //"maxFtp": 0,
+		  //"minWeight": 150,
+		  //"maxWeight": 80,
+		  "minWkg": 3.5,
+		  "maxWkg": 5.0,
+		  //"minAge": 60,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  "preference": "vallonné",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 6,
+		  "maxEndurance": 9,
+		  "minExplosivite": 6,
+		  "maxExplosivite": 9,
+		  "minAerobie": 6,
+		  "maxAerobie": 9,
+		  "minSprint": 4,
+		  "maxSprint": 8,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  "minAero": 4,
+		  "maxAero": 7,
+		  "minTechnique": 5,
+		  "maxTechnique": 8,
+		  "minConfidence": 7,
+		  "maxConfidence": 10,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 20,
+		  //"maxVolume": 1,
+		  "minRecuperation": 3,
+		  "maxRecuperation": 8,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Instinctif, courageux et imprévisible, tu attaques de loin et crois toujours en ton coup. Le baroudeur vit pour le panache, pas pour le calcul.",
+
+		"hidden": false
+	  },
+	  {
+		"id": "leader",
+		"name": "Capitaine de route",
+		"emoji": "️👨‍✈️",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 9000,
+		  //"maxFtp": 0,
+		  //"minWeight": 150,
+		  //"maxWeight": 80,
+		  //"minWkg": 3.5,
+		  "maxWkg": 5.0,
+		  //"minAge": 60,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "vallonné",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 6,
+		  "maxEndurance": 9,
+		  "minExplosivite": 3,
+		  "maxExplosivite": 6,
+		  "minAerobie": 6,
+		  "maxAerobie": 9,
+		  "minSprint": 3,
+		  "maxSprint": 7,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  "minAero": 4,
+		  "maxAero": 8,
+		  "minTechnique": 8,
+		  "maxTechnique": 10,
+		  "minConfidence": 8,
+		  "maxConfidence": 10,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 20,
+		  //"maxVolume": 1,
+		  "minRecuperation": 5,
+		  "maxRecuperation": 9,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Calme et inspirant, tu guides les autres par l’exemple. Stratège, pédagogue et solide, tu es le capitaine de route qui fait grandir son équipe.",
+
+		"hidden": false
+	  },
+	// === FUN & EASTER EGGS ===
+	  {
+		"id": "licorne-cols",
+		"name": "Licorne des cols",
+		"emoji": "🦄",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 300,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  "minWkg": 5.0,
+		  //"maxWkg": 4.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 4,
+		  "maxEndurance": 8,
+		  "minExplosivite": 8,
+		  "maxExplosivite": 10,
+		  "minAerobie": 8,
+		  "maxAerobie": 10,
+		  "minSprint": 5,
+		  "maxSprint": 9,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 4,
+		  //"maxAero": 10,
+		  "minTechnique": 6,
+		  "maxTechnique": 10,
+		  "minConfidence": 7,
+		  "maxConfidence": 10,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 10,
+		  //"maxVolume": 12,
+		  "minRecuperation": 5,
+		  "maxRecuperation": 8,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Tu brilles plus fort que ton capteur de puissance ✨.",
+
+		"hidden": true
+	  },
+	  {
+		"id": "caffeine-rider",
+		"name": "Caféinisé permanent",
+		"emoji": "☕",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 300,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  //"minWkg": 5.0,
+		 "maxWkg": 3.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 1,
+		  "maxEndurance": 5,
+		  "minExplosivite": 8,
+		  "maxExplosivite": 10,
+		  "minAerobie": 8,
+		  "maxAerobie": 10,
+		  "minSprint": 6,
+		  "maxSprint": 10,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 4,
+		  //"maxAero": 10,
+		  "minTechnique": 1,
+		  "maxTechnique": 5,
+		  "minConfidence": 7,
+		  "maxConfidence": 10,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 10,
+		  "maxVolume": 3,
+		  "minRecuperation": 1,
+		  "maxRecuperation": 4,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Tu ne pédales pas, tu vibres. Probablement trop de café mais tu préfère te dire que ce n'est pas ça.",
+
+		"hidden": true
+	  },
+	  {
+		"id": "zwift-warrior",
+		"name": "Zwift Warrior",
+		"emoji": "️🖥️🚴",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 300,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  //"minWkg": 5.0,
+		  //"maxWkg": 3.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  "preference": "home trainer",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 4,
+		  "maxEndurance": 8,
+		  "minExplosivite": 5,
+		  "maxExplosivite": 8,
+		  "minAerobie": 3,
+		  "maxAerobie": 6,
+		  "minSprint": 5,
+		  "maxSprint": 8,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 4,
+		  //"maxAero": 10,
+		  "minTechnique": 1,
+		  "maxTechnique": 5,
+		  "minConfidence": 1,
+		  "maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  "minVolume": 10,
+		  //"maxVolume": 3,
+		  //"minRecuperation": 1,
+		  //"maxRecuperation": 4,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Tu connais plus Watopia que ta propre région.",
+
+		"hidden": true
+	  },
+	  {
+		"id": "gravel-poet",
+		"name": "Poète du gravel",
+		"emoji": "️📜🚴",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 300,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  //"minWkg": 5.0,
+		  //"maxWkg": 3.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  "preference": "vallonné",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 6,
+		  "maxEndurance": 8,
+		  "minExplosivite": 1,
+		  "maxExplosivite": 5,
+		  "minAerobie": 7,
+		  "maxAerobie": 10,
+		  "minSprint": 3,
+		  "maxSprint": 5,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 4,
+		  //"maxAero": 10,
+		  "minTechnique": 1,
+		  "maxTechnique": 5,
+		  "minConfidence": 1,
+		  "maxConfidence": 5,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 10,
+		  //"maxVolume": 3,
+		  //"minRecuperation": 1,
+		  //"maxRecuperation": 4,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Tu postes des haïkus après chaque sortie poussiéreuse.",
+
+		"hidden": true
+	  },
+	  {
+		"id": "chrono-nerd",
+		"name": "Chrono Nerd",
+		"emoji": "️⌚",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  //"maxFtp": 400,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  //"minWkg": 4.0,
+		  //"maxWkg": 5.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 4,
+		  //"maxEndurance": 5,
+		  //"minExplosivite": 6,
+		  "maxExplosivite": 6,
+		  "minAerobie": 8,
+		  //"maxAerobie": 8,
+		  //"minSprint": 5,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  "minAero": 10,
+		  //"maxAero": 7,
+		  "minTechnique": 8,
+		  //"maxTechnique": 8,
+		  "minConfidence": 8,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  "minVolume": 20,
+		  //"maxVolume": 12,
+		  "minRecuperation": 6,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Tu passes plus de temps sur TrainingPeaks que sur la selle.",
+
+		"hidden": true
+	  },
+	  {
+		"id": "capteur-ko",
+		"name": "Capteur KO",
+		"emoji": "️⚙️",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  "maxFtp": 0,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  //"minWkg": 4.0,
+		  //"maxWkg": 5.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 4,
+		  //"maxEndurance": 5,
+		  //"minExplosivite": 6,
+		  //"maxExplosivite": 6,
+		  //"minAerobie": 8,
+		  //"maxAerobie": 8,
+		  //"minSprint": 5,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 10,
+		  //"maxAero": 7,
+		  //"minTechnique": 8,
+		  //"maxTechnique": 8,
+		  //"minConfidence": 8,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 20,
+		  //"maxVolume": 12,
+		  //"minRecuperation": 6,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Engine start, no problem. 5 minut. Tidim tidim tidim tidim. Engine kaput.",
+
+		"hidden": true
+	  },
+	  {
+		"id": "lanterne-rouge",
+		"name": "Lanterne rouge",
+		"emoji": "️🏮",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 200,
+		  "maxFtp": 100,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  //"minWkg": 4.0,
+		  //"maxWkg": 5.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 4,
+		  "maxEndurance": 10,
+		  //"minExplosivite": 6,
+		  "maxExplosivite": 3,
+		  //"minAerobie": 8,
+		  "maxAerobie": 3,
+		  //"minSprint": 5,
+		  "maxSprint": 3,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 10,
+		  "maxAero": 3,
+		  //"minTechnique": 8,
+		  "maxTechnique": 3,
+		  //"minConfidence": 8,
+		  "maxConfidence": 3,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 20,
+		  //"maxVolume": 12,
+		  //"minRecuperation": 6,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Tu finis toujours, même si c’est dernier. Respect éternel.",
+
+		"hidden": true
+	  },
+	  {
+		"id": "ftp-over9000",
+		"name": "FTP Over 9000",
+		"emoji": "️🔥🤖️",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  "minFtp": 9000,
+		  //"maxFtp": 0,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  //"minWkg": 4.0,
+		  //"maxWkg": 5.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 4,
+		  //"maxEndurance": 5,
+		  //"minExplosivite": 6,
+		  //"maxExplosivite": 6,
+		  //"minAerobie": 8,
+		  //"maxAerobie": 8,
+		  //"minSprint": 5,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 10,
+		  //"maxAero": 7,
+		  //"minTechnique": 8,
+		  //"maxTechnique": 8,
+		  //"minConfidence": 8,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 20,
+		  //"maxVolume": 12,
+		  //"minRecuperation": 6,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Impossible. Tu es un dieu du watt. Les capteurs fondent à ton approche.",
+
+		"hidden": true
+	  },
+	  {
+		"id": "ghost-rider",
+		"name": "Coureur fantôme",
+		"emoji": "️👻",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 9000,
+		  //"maxFtp": 0,
+		  //"minWeight": 70,
+		  //"maxWeight": 80,
+		  "minWkg": 4.0,
+		  //"maxWkg": 5.0,
+		  //"minAge": 18,
+		  //"maxAge": 65,
+		  //"sexe": "M",
+		  //"preference": "plat",
+
+		  // 🧬 --- CAPACITÉS ---
+		  "minEndurance": 6,
+		  //"maxEndurance": 5,
+		  "minExplosivite": 6,
+		  //"maxExplosivite": 6,
+		  "minAerobie": 6,
+		  //"maxAerobie": 8,
+		  "minSprint": 6,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  "minAero": 6,
+		  //"maxAero": 7,
+		  "minTechnique": 6,
+		  //"maxTechnique": 8,
+		  "minConfidence": 6,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 20,
+		  "maxVolume": 0,
+		  //"minRecuperation": 6,
+		  //"maxRecuperation": 7,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "On ne t'a pas vu de la saison à l'entrainement, mais tu dépasses la plupart des cyclistes dans les cols. Tu restes un mystère pour tout le monde...",
+
+		"hidden": true
+	  },
+	  {
+		"id": "noel-rider",
+		"name": "Père Noël du peloton",
+		"emoji": "️👻",   
+
+		"conditions": {
+		  // 💪 --- PHYSIOLOGIE ---
+		  //"minFtp": 9000,
+		  //"maxFtp": 0,
+		  "minWeight": 150,
+		  //"maxWeight": 80,
+		  //"minWkg": 4.0,
+		  //"maxWkg": 5.0,
+		  "minAge": 60,
+		  //"maxAge": 65,
+		  "sexe": "M",
+		  "preference": "montagne",
+
+		  // 🧬 --- CAPACITÉS ---
+		  //"minEndurance": 6,
+		  //"maxEndurance": 5,
+		  //"minExplosivite": 6,
+		  //"maxExplosivite": 6,
+		  //"minAerobie": 6,
+		  //"maxAerobie": 8,
+		  //"minSprint": 6,
+		  //"maxSprint": 6,
+
+		  // ⚙️ --- TECHNIQUE / CONFIANCE ---
+		  //"minAero": 6,
+		  //"maxAero": 7,
+		  //"minTechnique": 6,
+		  //"maxTechnique": 8,
+		  //"minConfidence": 6,
+		  //"maxConfidence": 7,
+
+		  // 🕒 --- ENTRAÎNEMENT ---
+		  //"minVolume": 20,
+		  "maxVolume": 1,
+		  //"minRecuperation": 6,
+		  "maxRecuperation": 1,
+
+		  // 🏊 --- TRIATHLON (optionnel) ---
+		  //"triathlon": true,
+		  //"triDistance": "M",
+		  //"minTriTime": 90,
+		  //"maxTriTime": 360
+		},
+
+		"description": "Besoin de 364j de récupération pour faire une sortie annuelle en tenue rouge sous la neige, ta préparation annuelle est ... étonnante",
+
+		"hidden": true
+	  }
 	  ];
 
 	  return Promise.resolve();
