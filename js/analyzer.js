@@ -149,9 +149,6 @@
 		percent: main.percent
 	  };
 
-	  console.log("DEBUG metrics", metrics);
-	  console.log("DEBUG matches", this.findProfile(metrics, profiles));
-
 	  return {
 		metrics,
 		profile,

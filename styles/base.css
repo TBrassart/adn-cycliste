@@ -610,3 +610,76 @@ canvas#adn-radar-chart {
 body.exporting {
   background: #ffffff !important;
 }
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+.dark .loading-overlay {
+  background: rgba(17, 24, 39, 0.9);
+  color: #e5e7eb;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(148,163,253,0.3);
+  border-top-color: var(--accent-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-overlay p {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  .cyclist-form {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .adn-result {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  canvas#adn-radar-chart {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.adn-footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem 0;
+  font-size: 0.8rem;
+  color: #6b7280;
+  border-top: 1px solid rgba(148,163,253,0.15);
+}
+
+.dark .adn-footer {
+  border-top-color: rgba(75,85,99,0.4);
+  color: #9ca3af;
+}

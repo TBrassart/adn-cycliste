@@ -1,0 +1,21 @@
+{
+  "name": "ADN du Cycliste",
+  "short_name": "ADN Cycliste",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "description": "Analyse ton profil cycliste, découvre ton ADN et ton jumeau pro.",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

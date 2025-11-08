@@ -18,6 +18,8 @@
   <!-- Librairies pour l'export -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  
+  <link rel="manifest" href="manifest.json">
 
   <!-- Chart.js (CDN, no build needed) -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -78,7 +80,7 @@
 	</div>
 
     <footer class="adn-footer">
-      <p>ADN du Cycliste — On tourne sans EPO 🚴‍</p>
+      <p>ADN du Cycliste — Made without EPO but with ❤️🚴‍</p>
     </footer>
   </div>
 
@@ -88,5 +90,10 @@
   <script src="js/analyzer.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/main.js"></script>
+  
+  <div id="loading-overlay" class="loading-overlay">
+  <div class="loading-spinner"></div>
+  <p>Analyse en cours...</p>
+</div>
 </body>
 </html>

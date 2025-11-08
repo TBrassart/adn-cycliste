@@ -15,7 +15,6 @@
         }
       });
       localStorage.setItem("theme", themeName);
-      console.log("🌈 Thème appliqué :", themeName);
     },
 
     initThemeSelector() {

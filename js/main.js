@@ -253,7 +253,6 @@
 		}
 	  ];
 
-	  console.log("Profils chargés :", profiles);
 	  return Promise.resolve();
 	}
 
@@ -387,50 +386,59 @@
 	}
 
   function onFormSubmit(event) {
-    event.preventDefault();
-    if (!window.ADNAnalyzer || !window.ADNUI) {
-      console.error("Modules non chargés correctement.");
-      return;
-    }
+	  event.preventDefault();
 
-	// ✅ Collecte automatique des valeurs du formulaire dynamique
-	const formData = {};
-	const allInputs = document.querySelectorAll("#dynamic-form input, #dynamic-form select");
+	  const overlay = document.getElementById("loading-overlay");
+	  if (overlay) overlay.style.display = "flex"; // ✅ affiche le loader
 
-	allInputs.forEach(input => {
-	  const key = input.name;
-	  if (!key) return;
+	  try {
+		if (!window.ADNAnalyzer || !window.ADNUI) {
+		  console.error("Modules non chargés correctement.");
+		  if (overlay) overlay.style.display = "none";
+		  return;
+		}
 
-	  if (input.type === "checkbox") {
-		formData[key] = input.checked;
-	  } else if (input.type === "number" || input.type === "range") {
-		formData[key] = Number(input.value);
-	  } else {
-		formData[key] = input.value;
+		// ✅ Collecte automatique des valeurs du formulaire dynamique
+		const formData = {};
+		const allInputs = document.querySelectorAll("#dynamic-form input, #dynamic-form select");
+
+		allInputs.forEach(input => {
+		  const key = input.name;
+		  if (!key) return;
+
+		  if (input.type === "checkbox") {
+			formData[key] = input.checked;
+		  } else if (input.type === "number" || input.type === "range") {
+			formData[key] = Number(input.value);
+		  } else {
+			formData[key] = input.value;
+		  }
+		});
+
+		// Vérifie la présence des données essentielles
+		if (!formData.ftp || !formData.weight) {
+		  alert("Merci de renseigner au moins FTP et Poids !");
+		  if (overlay) overlay.style.display = "none";
+		  return;
+		}
+
+		const inputs = formData;
+		const result = window.ADNAnalyzer.analyze(inputs, profiles);
+
+		// ✅ Comparaison avec les pros (à partir des métriques calculées)
+		const { best, similarity } = compareWithPros(result.metrics);
+
+		// ✅ Affichage : carte, radar comparatif (toi + pro), bloc résumé pro
+		window.ADNUI.renderProfileCard(result);
+		window.ADNUI.renderRadarChart(result, best, similarity);
+		window.ADNUI.renderProComparison(best, similarity);
+	  } catch (err) {
+		console.error("Erreur analyse :", err);
+		alert("Une erreur est survenue pendant l'analyse.");
+	  } finally {
+		if (overlay) overlay.style.display = "none"; // ✅ cache le loader
 	  }
-	});
-
-	// Vérifie la présence des données essentielles
-	if (!formData.ftp || !formData.weight) {
-	  alert("Merci de renseigner au moins FTP et Poids !");
-	  return;
 	}
-
-	const inputs = formData;
-
-    console.log("DEBUG inputs", inputs);
-    const result = window.ADNAnalyzer.analyze(inputs, profiles);
-	console.log("DEBUG analyze result", result);
-
-	// ✅ Comparaison avec les pros (à partir des métriques calculées)
-	const { best, similarity } = compareWithPros(result.metrics);
-
-	// ✅ Affichage : carte, radar comparatif (toi + pro), bloc résumé pro
-	window.ADNUI.renderProfileCard(result);
-	window.ADNUI.renderRadarChart(result, best, similarity);
-	window.ADNUI.renderProComparison(best, similarity);
-
-  }
 
 	document.addEventListener("DOMContentLoaded", function () {
 	  if (window.ADNUI) {
