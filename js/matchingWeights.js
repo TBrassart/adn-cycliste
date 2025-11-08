@@ -1,9 +1,7 @@
-// js/matchingWeights.js
 (function (window) {
   "use strict";
 
   const matchingWeights = {
-    // Pondérations globales par dimension
     weights: {
       wkg: 0.2,
       endurance: 0.15,
@@ -18,25 +16,10 @@
       triathlon: 0.05
     },
 
-    labels: {
-      wkg: "W/kg",
-      endurance: "Endurance",
-      explosivite: "Explosivité",
-      aerobie: "Aérobie",
-      sprint: "Sprint",
-      aero: "Aérodynamisme",
-      technique: "Technique",
-      confidence: "Confiance sur le vélo",
-      volume: "Volume (h/sem)",
-      age: "Âge",
-      triathlon: "Triathlon"
-    },
-
+    /**
+     * Matching flou et pondéré
+     */
     computeWeightedScore(metrics, conditions) {
-      let total = 0;
-      const breakdown = {};
-      const details = [];
-
       const flat = {
         ...metrics.physiologie,
         ...metrics.capacites,
@@ -44,89 +27,63 @@
         ...metrics.entrainement
       };
 
+      let total = 0;
+      let breakdown = {};
+      let details = [];
+
       const getWeight = (key) => this.weights[key] || 0.05;
-      const getLabel = (baseKey) => this.labels[baseKey] || baseKey;
 
-      Object.entries(conditions).forEach(([condKey, expected]) => {
+      const fuzzyScore = (actual, target, type = "min") => {
+        if (actual === undefined || target === undefined) return 0;
+        const diff = actual - target;
+        if (type === "min") {
+          return diff <= 0 ? Math.max(0, 1 + diff / target) : 1;
+        } else {
+          return diff >= 0 ? Math.max(0, 1 - diff / target) : 1;
+        }
+      };
+
+      for (const [condKey, expected] of Object.entries(conditions)) {
+        let baseKey = condKey.replace(/^(min|max)/, "").toLowerCase();
+        const weight = getWeight(baseKey);
+        const actual = flat[baseKey];
         let matched = false;
-        let weightAdd = 0;
-        let baseKey = condKey;
-        let actual = undefined;
+        let partialScore = 0;
 
-        // minXxx
         if (condKey.startsWith("min")) {
-          baseKey = condKey.slice(3); // Endurance -> endurance
-          baseKey = baseKey.charAt(0).toLowerCase() + baseKey.slice(1);
-          actual = flat[baseKey];
-          if (actual !== undefined && actual >= expected) {
-            matched = true;
-            weightAdd = getWeight(baseKey);
-          }
-        }
-        // maxXxx
-        else if (condKey.startsWith("max")) {
-          baseKey = condKey.slice(3);
-          baseKey = baseKey.charAt(0).toLowerCase() + baseKey.slice(1);
-          actual = flat[baseKey];
-          if (actual !== undefined && actual <= expected) {
-            matched = true;
-            weightAdd = getWeight(baseKey) * 0.5;
-          }
-        }
-        // âge min / max explicites
-        else if (condKey === "ageMin") {
-          baseKey = "age";
-          actual = flat.age;
-          if (actual !== undefined && actual >= expected) {
-            matched = true;
-            weightAdd = getWeight("age");
-          }
-        } else if (condKey === "ageMax") {
-          baseKey = "age";
-          actual = flat.age;
-          if (actual !== undefined && actual <= expected) {
-            matched = true;
-            weightAdd = getWeight("age");
-          }
-        }
-        // booléen exact (ex: triathlon)
-        else if (typeof expected === "boolean") {
-          baseKey = condKey;
-          actual = flat[baseKey];
-          if (actual === expected) {
-            matched = true;
-            weightAdd = getWeight(baseKey);
-          }
-        }
-        // string exact (ex: sexe, etc.)
-        else if (typeof expected === "string") {
-          baseKey = condKey;
-          actual = flat[baseKey];
-          if (actual !== undefined && String(actual) === expected) {
-            matched = true;
-            weightAdd = getWeight(baseKey);
-          }
+          partialScore = fuzzyScore(actual, expected, "min");
+          matched = actual >= expected;
+        } else if (condKey.startsWith("max")) {
+          partialScore = fuzzyScore(actual, expected, "max");
+          matched = actual <= expected;
+        } else if (typeof expected === "boolean") {
+          partialScore = actual === expected ? 1 : 0;
+          matched = actual === expected;
+        } else if (typeof expected === "string") {
+          partialScore = actual === expected ? 1 : 0;
+          matched = actual === expected;
         }
 
-        // Appliquer si match
-        if (matched && weightAdd > 0) {
-          total += weightAdd;
-          breakdown[baseKey] = (breakdown[baseKey] || 0) + weightAdd;
-        }
+        const weighted = partialScore * weight;
+        total += weighted;
+        breakdown[baseKey] = (breakdown[baseKey] || 0) + weighted;
 
-        // Enregistrer le détail (même si non matché)
         details.push({
           key: condKey,
           baseKey,
-          label: getLabel(baseKey),
           expected,
-          actual: actual !== undefined ? actual : null,
+          actual,
           matched,
-          weight: +weightAdd.toFixed(3)
+          partial: +(partialScore * 100).toFixed(0),
+          weight
         });
-      });
+      }
 
-      return { total, breakdown, details };
+      // ⚙️ normalisation : sur total des poids définis
+      const totalWeights = Object.values(this.weights).reduce((a, b) => a + b, 0);
+      const normalized = +(total / totalWeights).toFixed(3);
+
+      return { total: normalized, breakdown, details };
     }
   };
 

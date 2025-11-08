@@ -96,29 +96,33 @@
 	  const results = profiles.map((profile) => {
 		const { total, breakdown, details } =
 		  window.matchingWeights.computeWeightedScore(metrics, profile.conditions || {});
-
 		return {
 		  id: profile.id,
 		  name: profile.name,
 		  emoji: profile.emoji,
 		  description: profile.description,
+		  hidden: profile.hidden || false,
 		  total,
 		  breakdown,
 		  details
 		};
 	  });
 
+	  // 🔹 Normalisation des scores
 	  results.sort((a, b) => b.total - a.total);
-
-	  const maxScore = results.length
-		? Math.max(...results.map((r) => r.total))
-		: 0.0001;
+	  const maxScore = results.length ? Math.max(...results.map((r) => r.total)) : 0.0001;
 
 	  results.forEach((r) => {
 		r.percent = maxScore > 0 ? +((r.total / maxScore) * 100).toFixed(1) : 0;
 	  });
 
-	  return results;
+	  // 🔹 Filtrer les easter eggs (hidden)
+	  const visible = results.filter((r) => !r.hidden || r.percent >= 95);
+
+	  // 🔹 Limiter à 5 meilleurs profils
+	  const limited = visible.slice(0, 5);
+
+	  return limited;
 	},
 
     /**

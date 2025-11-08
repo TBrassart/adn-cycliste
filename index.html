@@ -40,20 +40,17 @@
 
     <main class="adn-main">
       <section class="adn-form-card">
-        <h2>Entre ton profil</h2>
         <form id="cyclist-form" class="cyclist-form">
 		  <h2>Analyse ton ADN Cycliste 🧬</h2>
+		  <button type="submit" class="btn-primary">Analyser mon ADN</button>
+		  <button type="button" id="debug-toggle" class="btn-secondary">Afficher debug</button>
 
 		  <!-- Formulaire dynamique généré par JS -->
 		  <div id="dynamic-form"></div>
-
-		  <button type="submit" class="btn-primary">Analyser mon ADN</button>
-		  <button type="button" id="debug-toggle" class="btn-secondary">Afficher debug</button>
 		</form>
       </section>
 
       <section class="adn-result">
-        <h2>Ton profil</h2>
         <div id="profile-card" class="profile-card profile-card--empty">
           <p>Renseigne tes données pour découvrir ton ADN cycliste.</p>
         </div>
@@ -63,9 +60,16 @@
         </div>
       </section>
     </main>
+	
+	<section id="pro-compare">
+	  <h4>Comparaison avec les pros</h4>
+	  <div id="pro-results">
+		<p>Analyse ton ADN pour découvrir ton jumeau pro 👇</p>
+	  </div>
+	</section>
 
     <footer class="adn-footer">
-      <p>ADN du Cycliste — 100% client-side, exportable partout 🚴‍♂️</p>
+      <p>ADN du Cycliste — On tourne sans EPO 🚴‍</p>
     </footer>
   </div>
 

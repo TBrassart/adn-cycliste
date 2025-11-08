@@ -4,10 +4,11 @@
 
   const metricsSchema = {
     physiologie: {
-      ftp: { type: "number", range: [100, 450], label: "FTP (Watts)" },
-      weight: { type: "number", range: [40, 120], label: "Poids (kg)" },
+      ftp: { type: "number", range: [100, 9000], label: "FTP (Watts)" },
+      weight: { type: "number", range: [40, 300], label: "Poids (kg)" },
       age: { type: "number", range: [15, 80], label: "Âge" },
-      sexe: { type: "select", options: ["M", "F"], label: "Sexe" }
+      sexe: { type: "select", options: ["M", "F"], label: "Sexe" },
+	  preference: {type: "select", options: ["plat", "vallonné", "montagne", "home trainer"], label: "Préférence de terrain"}
     },
 
     capacites: {
