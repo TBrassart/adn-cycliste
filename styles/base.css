@@ -535,3 +535,78 @@ canvas#adn-radar-chart {
 .form-section.collapsed .section-arrow {
   transform: rotate(-90deg);
 }
+
+.export-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.export-controls button {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.4rem;
+  border: 1px solid rgba(148, 163, 253, 0.4);
+  background: rgba(148, 163, 253, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.export-controls button:hover {
+  background: var(--accent-color);
+  color: white;
+  border-color: transparent;
+}
+
+/* === Encadré Comparaison Pro (export inclus) === */
+#pro-compare {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+#pro-compare h4 {
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+#pro-results {
+  display: flex;
+  justify-content: center;
+}
+
+.pro-compare-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(148, 163, 253, 0.1);
+  border: 1px solid rgba(148, 163, 253, 0.25);
+  border-radius: 0.75rem;
+  padding: 0.6rem 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(3px);
+}
+
+.pro-emoji {
+  font-size: 1.6rem;
+}
+
+.pro-similarity {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.pro-style {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.dark .pro-compare-card {
+  background: rgba(17, 24, 39, 0.85);
+  border-color: rgba(75, 85, 99, 0.5);
+}
+
+body.exporting {
+  background: #ffffff !important;
+}

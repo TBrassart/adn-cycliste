@@ -438,6 +438,7 @@
 		window.ADNUI.updateRangeLabels();
 		window.ADNUI.toggleTriathlonFields();
 		window.ADNUI.generateDynamicForm();
+		window.ADNUI.initExportButtons();
 	  }
 
 	  // ✅ Activation du bouton debug

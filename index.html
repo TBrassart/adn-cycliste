@@ -15,6 +15,10 @@
   <link rel="stylesheet" href="styles/theme-rouvy.css" data-theme="rouvy" disabled />
   <link rel="stylesheet" href="styles/theme-noel.css" data-theme="noel" disabled />
 
+  <!-- Librairies pour l'export -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
   <!-- Chart.js (CDN, no build needed) -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -58,15 +62,20 @@
         <div class="chart-container">
           <canvas id="adn-radar-chart"></canvas>
         </div>
+		
+		<section id="pro-compare">
+		  <h4>Comparaison avec les pros</h4>
+		  <div id="pro-results">
+			<p>Analyse ton ADN pour découvrir ton jumeau pro 👇</p>
+		  </div>
+		</section>
       </section>
     </main>
 	
-	<section id="pro-compare">
-	  <h4>Comparaison avec les pros</h4>
-	  <div id="pro-results">
-		<p>Analyse ton ADN pour découvrir ton jumeau pro 👇</p>
-	  </div>
-	</section>
+	<div id="export-controls" class="export-controls">
+	  <button id="export-png" class="btn-secondary">📷 Exporter en PNG</button>
+	  <button id="export-pdf" class="btn-secondary">📄 Exporter en PDF</button>
+	</div>
 
     <footer class="adn-footer">
       <p>ADN du Cycliste — On tourne sans EPO 🚴‍</p>

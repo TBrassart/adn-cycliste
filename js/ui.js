@@ -526,6 +526,61 @@
       </div>
     `;
     },
+	
+	/**
+	 * Capture et export de la carte ADN (PNG / PDF)
+	 */
+	initExportButtons() {
+	  const pngBtn = document.getElementById("export-png");
+	  const pdfBtn = document.getElementById("export-pdf");
+	  const captureArea = document.querySelector(".adn-result"); // ✅ capture tout le bloc
+
+	  if (!pngBtn || !pdfBtn || !captureArea) return;
+
+	  async function captureToCanvas() {
+	  // ✅ Forcer un fond blanc le temps de la capture
+	  document.body.classList.add("exporting");
+
+	  const canvas = await html2canvas(captureArea, {
+		backgroundColor: "#ffffff",
+		scale: 2,
+		useCORS: true,
+		logging: false
+	  });
+
+	  document.body.classList.remove("exporting");
+	  return canvas;
+	}
+
+	  pngBtn.addEventListener("click", async () => {
+		pngBtn.disabled = true;
+		const canvas = await captureToCanvas();
+		const dataURL = canvas.toDataURL("image/png");
+		const a = document.createElement("a");
+		a.href = dataURL;
+		a.download = "ADN-cycliste.png";
+		a.click();
+		pngBtn.disabled = false;
+	  });
+
+	  pdfBtn.addEventListener("click", async () => {
+		pdfBtn.disabled = true;
+		const canvas = await captureToCanvas();
+		const dataURL = canvas.toDataURL("image/png");
+		const { jsPDF } = window.jspdf;
+		const pdf = new jsPDF({
+		  orientation: "portrait",
+		  unit: "pt",
+		  format: "a4"
+		});
+		const imgProps = pdf.getImageProperties(dataURL);
+		const pdfWidth = pdf.internal.pageSize.getWidth();
+		const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+		pdf.addImage(dataURL, "PNG", 0, 0, pdfWidth, pdfHeight);
+		pdf.save("ADN-cycliste.pdf");
+		pdfBtn.disabled = false;
+	  });
+	},
 
     /* =========================
      * DEBUG
