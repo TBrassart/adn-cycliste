@@ -77,12 +77,22 @@
 	<div id="export-controls" class="export-controls">
 	  <button id="export-png" class="btn-secondary">📷 Exporter en PNG</button>
 	  <button id="export-pdf" class="btn-secondary">📄 Exporter en PDF</button>
+	  <div class="export-options">
+		<label for="export-format">Format :</label>
+		<select id="export-format">
+		  <option value="square">Carré (1:1) — Instagram</option>
+		  <option value="horizontal">Horizontal (16:9) — Twitter / LinkedIn</option>
+		  <option value="vertical">Vertical (9:16) — Story / Reel</option>
+		</select>
+	  </div>
 	</div>
-
+	
     <footer class="adn-footer">
       <p>ADN du Cycliste — Made without EPO but with ❤️🚴‍</p>
     </footer>
   </div>
+
+  <canvas id="adn-wave" class="adn-wave"></canvas>
 
   <!-- JS: ordre important -->
   <script src="js/metricsSchema.js"></script>

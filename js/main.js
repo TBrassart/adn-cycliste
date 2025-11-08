@@ -1712,91 +1712,49 @@
 	  return Promise.resolve();
 	}
 
-	// === Base de données des pros (simplifiée) ===
-	const proCyclists = [
+	// === Données Pros ===
+	window.proCyclists = [
 	  {
 		id: "pogacar",
 		name: "Tadej Pogačar",
 		emoji: "🧗‍",
 		style: "grimpeur-puncheur",
-		stats: {
-		  wkg: 6.2,
-		  endurance: 9,
-		  explosivite: 8,
-		  sprint: 6,
-		  aero: 7,
-		  technique: 7
-		}
+		stats: { wkg: 6.2, endurance: 9, explosivite: 8, sprint: 6, aero: 7, technique: 7 }
 	  },
 	  {
 		id: "van-aert",
 		name: "Wout Van Aert",
 		emoji: "⚡",
 		style: "polyvalent",
-		stats: {
-		  wkg: 5.8,
-		  endurance: 9,
-		  explosivite: 9,
-		  sprint: 9,
-		  aero: 8,
-		  technique: 9
-		}
+		stats: { wkg: 5.8, endurance: 9, explosivite: 9, sprint: 9, aero: 8, technique: 9 }
 	  },
 	  {
 		id: "vdp",
 		name: "Mathieu van der Poel",
 		emoji: "🔥",
 		style: "puncheur-explosif",
-		stats: {
-		  wkg: 5.5,
-		  endurance: 8,
-		  explosivite: 10,
-		  sprint: 8,
-		  aero: 7,
-		  technique: 9
-		}
+		stats: { wkg: 5.5, endurance: 8, explosivite: 10, sprint: 8, aero: 7, technique: 9 }
 	  },
 	  {
 		id: "vingegaard",
 		name: "Jonas Vingegaard",
 		emoji: "🏔️",
 		style: "grimpeur pur",
-		stats: {
-		  wkg: 6.4,
-		  endurance: 9,
-		  explosivite: 6,
-		  sprint: 4,
-		  aero: 7,
-		  technique: 6
-		}
+		stats: { wkg: 6.4, endurance: 9, explosivite: 6, sprint: 4, aero: 7, technique: 6 }
 	  },
 	  {
 		id: "evenepoel",
 		name: "Remco Evenepoel",
 		emoji: "⏱️",
 		style: "chrono-grimpeur",
-		stats: {
-		  wkg: 6.0,
-		  endurance: 8,
-		  explosivite: 8,
-		  sprint: 6,
-		  aero: 9,
-		  technique: 8
-		}
+		stats: { wkg: 6.0, endurance: 8, explosivite: 8, sprint: 6, aero: 10, technique: 8 }
 	  },
 	  {
 		id: "cavendish",
 		name: "Mark Cavendish",
 		emoji: "💥",
 		style: "sprinteur pur",
-		stats: {
-		  wkg: 4.5,
-		  endurance: 6,
-		  explosivite: 10,
-		  sprint: 10,
-		  aero: 8,
-		  technique: 8
-		}
+		stats: { wkg: 4.5, endurance: 6, explosivite: 10, sprint: 10, aero: 8, technique: 8 }
 	  }
 	];
 
@@ -1804,41 +1762,63 @@
 	 * Compare les métriques de l'utilisateur avec des pros et renvoie le plus proche
 	 */
 	function compareWithPros(userMetrics) {
+	  if (!window.proCyclists || !Array.isArray(window.proCyclists)) {
+		console.warn("⚠️ Aucune donnée pro disponible.");
+		return { best: null, similarity: 0, comparisons: [] };
+	  }
+
+	  const proCyclists = window.proCyclists;
+
 	  const user = {
-		wkg: userMetrics.physiologie?.wkg || 0,
-		endurance: userMetrics.capacites?.endurance || 0,
-		explosivite: userMetrics.capacites?.explosivite || 0,
-		sprint: userMetrics.capacites?.sprint || 0,
-		aero: userMetrics.technique?.aero || 0,
-		technique: userMetrics.technique?.technique || 0
+		wkg: (userMetrics.physiologie && userMetrics.physiologie.wkg) || 0,
+		endurance: (userMetrics.capacites && userMetrics.capacites.endurance) || 0,
+		explosivite: (userMetrics.capacites && userMetrics.capacites.explosivite) || 0,
+		sprint: (userMetrics.capacites && userMetrics.capacites.sprint) || 0,
+		aero: (userMetrics.technique && userMetrics.technique.aero) || 0,
+		technique: (userMetrics.technique && userMetrics.technique.technique) || 0,
+		volume: (userMetrics.entrainement && userMetrics.entrainement.volume) || 0
 	  };
 
-	  let best = null;
-	  let bestScore = 0;
-
-	  proCyclists.forEach((pro) => {
+	  const comparisons = proCyclists.map((pro) => {
 		const stats = pro.stats;
-		let diff = 0;
+		const details = [];
+		let totalScore = 0;
 		let count = 0;
 
 		for (const key in stats) {
-		  const userVal = user[key];
-		  const proVal = stats[key];
-		  if (userVal > 0) {
-			diff += Math.abs(userVal - proVal);
-			count++;
-		  }
+		  const userVal = user[key] ?? 0;
+		  const proVal = stats[key] ?? 0;
+		  const diff = Math.abs(userVal - proVal);
+		  const similarity = Math.max(0, 1 - diff / 10); // 0 → 1 (tolérance 10 pts)
+		  totalScore += similarity;
+		  count++;
+
+		  details.push({
+			key,
+			userVal,
+			proVal,
+			delta: +(userVal - proVal).toFixed(2),
+			diff,
+			similarity: +(similarity * 100).toFixed(1)
+		  });
 		}
 
-		const avgDiff = diff / count;
-		const similarity = Math.max(0, 100 - avgDiff * 10); // 10 pts de diff = -100%
-		if (similarity > bestScore) {
-		  bestScore = similarity;
-		  best = pro;
-		}
+		const globalSimilarity = +(totalScore / count * 100).toFixed(1);
+
+		return {
+		  ...pro,
+		  similarity: globalSimilarity,
+		  details
+		};
 	  });
 
-	  return { best, similarity: Math.round(bestScore) };
+	  // Tri décroissant par similarité
+	  comparisons.sort((a, b) => b.similarity - a.similarity);
+
+	  const best = comparisons[0] || null;
+	  const similarity = best ? Math.round(best.similarity) : 0;
+
+	  return { best, similarity, comparisons };
 	}
 
   function onFormSubmit(event) {
@@ -1882,12 +1862,12 @@
 		const result = window.ADNAnalyzer.analyze(inputs, profiles);
 
 		// ✅ Comparaison avec les pros (à partir des métriques calculées)
-		const { best, similarity } = compareWithPros(result.metrics);
+		const { best, similarity, comparisons } = compareWithPros(result.metrics);
 
 		// ✅ Affichage : carte, radar comparatif (toi + pro), bloc résumé pro
 		window.ADNUI.renderProfileCard(result);
+		window.ADNUI.renderProComparison(best, similarity, comparisons);
 		window.ADNUI.renderRadarChart(result, best, similarity);
-		window.ADNUI.renderProComparison(best, similarity);
 	  } catch (err) {
 		console.error("Erreur analyse :", err);
 		alert("Une erreur est survenue pendant l'analyse.");
@@ -1903,6 +1883,7 @@
 		window.ADNUI.toggleTriathlonFields();
 		window.ADNUI.generateDynamicForm();
 		window.ADNUI.initExportButtons();
+		window.ADNUI.initADNWave();
 	  }
 
 	  // ✅ Activation du bouton debug

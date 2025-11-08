@@ -739,3 +739,112 @@ body.exporting {
 .dark .match-bar.secret {
   background: rgba(255, 215, 0, 0.08);
 }
+
+.pro-compare-card {
+  margin-top: 1rem;
+  background: rgba(148,163,253,0.08);
+  border: 1px solid rgba(148,163,253,0.3);
+  border-radius: 0.75rem;
+  padding: 0.8rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  font-size: 0.85rem;
+}
+
+.pro-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.pro-emoji {
+  font-size: 1.4rem;
+  margin-right: 0.25rem;
+}
+
+.pro-similarity {
+  font-weight: 600;
+}
+
+.pro-style {
+  margin: 0.2rem 0 0.5rem;
+  color: #6b7280;
+  font-size: 0.8rem;
+}
+
+.pro-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.3rem;
+}
+
+.pro-table th,
+.pro-table td {
+  padding: 0.15rem 0.2rem;
+}
+
+.pro-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  border-bottom: 1px solid rgba(148,163,253,0.3);
+}
+
+.pro-table td {
+  font-size: 0.78rem;
+}
+
+.pro-analysis {
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+#adn-wave {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: transparent;
+  pointer-events: none;
+}
+
+.export-options {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.export-options select {
+  padding: 0.25rem 0.4rem;
+  border-radius: 0.4rem;
+  border: 1px solid rgba(148,163,253,0.4);
+  background: rgba(255,255,255,0.9);
+}
+
+/* === Formats d'export adaptatifs === */
+.adn-result.export-square {
+  aspect-ratio: 1 / 1;
+  width: 80vmin;
+}
+
+.adn-result.export-horizontal {
+  aspect-ratio: 16 / 9;
+  width: 90vmin;
+}
+
+.adn-result.export-vertical {
+  aspect-ratio: 9 / 16;
+  width: 60vmin;
+}
+
+/* Empêche les débordements pendant la capture */
+.exporting .adn-result {
+  overflow: hidden;
+  transition: none !important;
+}
+
