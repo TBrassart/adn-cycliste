@@ -300,7 +300,7 @@
 			<div class="match-bar-label">${m.emoji || "🌟"} ${m.name}</div>
 			<div class="match-bar-percent">${percent}%</div>
 		  </div>
-		  <p class="hidden-desc">${m.description || "Profil légendaire sans description."}</p>
+		  <p class="hidden-desc reveal-gold">${m.description || "Profil légendaire sans description."}</p>
 		`;
 	  }).join("");
 	}
