@@ -45,16 +45,4 @@ ton pseudo ou prénom en bas
 💡 Complexité : faible (même logique que l’export actuel)
 💡 Valeur : forte pour partage communautaire.
 
-🌈 Bonus visuels et immersifs
 
-Animation légère du radar à l’apparition.
-
-Effet sonore ou vibration quand un “profil secret” est débloqué.
-
-Mode “ADN animé” : une ligne ondulée animée en fond (canvas).
-
-Changement de fond selon le profil principal (montagne = fond montagne, Zwift = fond orange/bleu…).
-
-💡 Complexité : faible
-
-💡 Valeur : immersion et polish.
