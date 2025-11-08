@@ -610,7 +610,7 @@
 		<div class="pro-compare-card">
 		  <div class="pro-header">
 			<div>
-			  <span class="pro-emoji">${pro.emoji || "🚴‍♂️"}</span>
+			  <span class="pro-emoji">${pro.emoji || "🚴‍"}</span>
 			  <strong>${pro.name}</strong>
 			</div>
 			<span class="pro-similarity" style="color:${color};">
@@ -755,7 +755,7 @@
 		  glow: "rgba(255, 215, 0, 0.5)"
 		},
 		zwift: {
-		  wave: "rgba(255, 120, 0, 0.25)",
+		  wave: "rgba(255, 120, 0, 0.5)",
 		  glow: "rgba(255, 120, 0, 0.5)"
 		},
 		rouvy: {
@@ -764,7 +764,7 @@
 		},
 		noel: {
 		  wave: "rgba(0, 200, 0, 0.3)",
-		  glow: "rgba(255, 0, 0, 0.4)"
+		  glow: "rgba(0, 200, 0, 0.3)"
 		}
 	  };
 
