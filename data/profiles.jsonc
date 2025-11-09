@@ -29,11 +29,7 @@
 			"minTechnique": 6,
 			"maxTechnique": 8,
 			"maxConfidence": 7,
-			"maxRecuperation": 7,
-			"triathlon": true,
-			"triDistance": "M",
-			"minTriTime": 90,
-			"maxTriTime": 360
+			"maxRecuperation": 7
 		},
 		"description": "Tu carbures à la régularité et à la puissance longue.",
 		"hidden": false
@@ -52,7 +48,7 @@
 			"minAero": 6,
 			"minTechnique": 7,
 			"minConfidence": 6,
-			"maxRecuperation": 7,
+			"maxRecuperation": 7
 		},
 		"description": "Tu brilles dans les 200 derniers mètres, puissance pure !",
 		"hidden": false
@@ -71,7 +67,7 @@
 			"maxAero": 7,
 			"minTechnique": 7,
 			"minConfidence": 7,
-			"maxRecuperation": 7,
+			"maxRecuperation": 7
 		},
 		"description": "Tu adores les côtes courtes où tu peux faire parler ton punch.",
 		"hidden": false
@@ -90,7 +86,7 @@
 			"minAero": 7,
 			"minTechnique": 4,
 			"minConfidence": 4,
-			"maxRecuperation": 7,
+			"maxRecuperation": 7
 		},
 		"description": "Tu files droit, tête baissée, comme une lame dans le vent.",
 		"hidden": false
@@ -108,7 +104,7 @@
 			"minAerobie": 4,
 			"minSprint": 3,
 			"minConfidence": 4,
-			"minRecuperation": 3,
+			"minRecuperation": 3
 		},
 		"description": "Tu voles dans les cols mais attaques sur les rampes raides.",
 		"hidden": false
@@ -121,7 +117,7 @@
 			"minEndurance": 9,
 			"minAero": 7,
 			"minTechnique": 4,
-			"minRecuperation": 6,
+			"minRecuperation": 6
 		},
 		"description": "Tu es une machine à rouler, tu ne t’arrêtes jamais.",
 		"hidden": false
@@ -139,7 +135,7 @@
 			"minTechnique": 4,
 			"minVolume": 10,
 			"minRecuperation": 4,
-			"triathlon": true,
+			"triathlon": true
 		},
 		"description": "Endurant, régulier et concentré : tu domines la durée.",
 		"hidden": false
@@ -156,7 +152,7 @@
 			"minAero": 7,
 			"minTechnique": 8,
 			"minConfidence": 8,
-			"minRecuperation": 4,
+			"minRecuperation": 4
 		},
 		"description": "Tu es à l’aise dans les virages, la gravité est ton alliée.",
 		"hidden": false
@@ -170,7 +166,7 @@
 			"minEndurance": 4,
 			"minAerobie": 4,
 			"minTechnique": 6,
-			"minConfidence": 6,
+			"minConfidence": 6
 		},
 		"description": "Tu cherches les chemins perdus, le bitume te fatigue.",
 		"hidden": false
@@ -187,7 +183,7 @@
 			"minAerobie": 5,
 			"minSprint": 5,
 			"minTechnique": 6,
-			"minConfidence": 6,
+			"minConfidence": 6
 		},
 		"description": "Tu passes partout, dans la boue comme sur l’asphalte.",
 		"hidden": false
@@ -202,7 +198,7 @@
 			"minAero": 8,
 			"minTechnique": 6,
 			"minConfidence": 6,
-			"minRecuperation": 4,
+			"minRecuperation": 4
 		},
 		"description": "Tu t’intéresses plus à ton CdA qu’à ton FTP.",
 		"hidden": false
@@ -216,7 +212,7 @@
 			"minAerobie": 6,
 			"minAero": 2,
 			"minConfidence": 3,
-			"minRecuperation": 3,
+			"minRecuperation": 3
 		},
 		"description": "Puissant et constant, le rouleur est le métronome du peloton. Il maintient un haut niveau de puissance sur le plat et sert de moteur dans les longues échappées.",
 		"hidden": false
@@ -230,7 +226,7 @@
 			"maxExplosivite": 5,
 			"minAerobie": 6,
 			"minTechnique": 4,
-			"minRecuperation": 6,
+			"minRecuperation": 6
 		},
 		"description": "Puissant et constant, le rouleur est le métronome du peloton. Il maintient un haut niveau de puissance sur le plat et sert de moteur dans les longues échappées.",
 		"hidden": false
@@ -245,7 +241,7 @@
 			"minAerobie": 3,
 			"minTechnique": 8,
 			"minConfidence": 6,
-			"minRecuperation": 7,
+			"minRecuperation": 7
 		},
 		"description": "Tu lis la course, tu attaques au bon moment. Rien n’est laissé au hasard.",
 		"hidden": false
@@ -261,7 +257,7 @@
 			"maxExplosivite": 6,
 			"maxSprint": 6,
 			"maxTechnique": 5,
-			"minRecuperation": 7,
+			"minRecuperation": 7
 		},
 		"description": "Tu roules pour le plaisir, pas pour le FTP.",
 		"hidden": false
@@ -278,7 +274,7 @@
 			"minConfidence": 6,
 			"maxConfidence": 9,
 			"minVolume": 10,
-			"minRecuperation": 7,
+			"minRecuperation": 7
 		},
 		"description": "Tu roules pour traverser des pays, pas des segments Strava.",
 		"hidden": false
@@ -302,7 +298,7 @@
 			"maxConfidence": 9,
 			"maxVolume": 12,
 			"minRecuperation": 1,
-			"maxRecuperation": 7,
+			"maxRecuperation": 7
 		},
 		"description": "Tu roules pour traverser des pays, pas des segments Strava.",
 		"hidden": false
@@ -323,7 +319,7 @@
 			"maxTechnique": 10,
 			"minConfidence": 7,
 			"maxConfidence": 10,
-			"minRecuperation": 7,
+			"minRecuperation": 7
 		},
 		"description": "Agile, réactif et intuitif, le rider urbain navigue dans la circulation comme un poisson dans l’eau. Il mise sur le flow, le contrôle et la créativité plus que sur la puissance brute.",
 		"hidden": false
@@ -346,7 +342,7 @@
 			"minConfidence": 7,
 			"maxConfidence": 10,
 			"minRecuperation": 5,
-			"maxRecuperation": 8,
+			"maxRecuperation": 8
 		},
 		"description": "Tu aimes la route calme et les sorties après le coucher du soleil.",
 		"hidden": false
@@ -374,7 +370,7 @@
 			"minConfidence": 7,
 			"maxConfidence": 10,
 			"minRecuperation": 3,
-			"maxRecuperation": 8,
+			"maxRecuperation": 8
 		},
 		"description": "Instinctif, courageux et imprévisible, tu attaques de loin et crois toujours en ton coup. Le baroudeur vit pour le panache, pas pour le calcul.",
 		"hidden": false
@@ -400,7 +396,7 @@
 			"minConfidence": 8,
 			"maxConfidence": 10,
 			"minRecuperation": 5,
-			"maxRecuperation": 9,
+			"maxRecuperation": 9
 		},
 		"description": "Calme et inspirant, tu guides les autres par l’exemple. Stratège, pédagogue et solide, tu es le capitaine de route qui fait grandir son équipe.",
 		"hidden": false
@@ -424,7 +420,7 @@
 			"minConfidence": 7,
 			"maxConfidence": 10,
 			"minRecuperation": 5,
-			"maxRecuperation": 8,
+			"maxRecuperation": 8
 		},
 		"description": "Tu brilles plus fort que ton capteur de puissance ✨.",
 		"hidden": true
@@ -449,7 +445,7 @@
 			"maxConfidence": 10,
 			"maxVolume": 3,
 			"minRecuperation": 1,
-			"maxRecuperation": 4,
+			"maxRecuperation": 4
 		},
 		"description": "Tu ne pédales pas, tu vibres. Probablement trop de café mais tu préfère te dire que ce n'est pas ça.",
 		"hidden": true
@@ -472,7 +468,7 @@
 			"maxTechnique": 5,
 			"minConfidence": 1,
 			"maxConfidence": 7,
-			"minVolume": 10,
+			"minVolume": 10
 		},
 		"description": "Tu connais plus Watopia que ta propre région.",
 		"hidden": true
@@ -494,7 +490,7 @@
 			"minTechnique": 1,
 			"maxTechnique": 5,
 			"minConfidence": 1,
-			"maxConfidence": 5,
+			"maxConfidence": 5
 		},
 		"description": "Tu postes des haïkus après chaque sortie poussiéreuse.",
 		"hidden": true
@@ -510,7 +506,7 @@
 			"minTechnique": 8,
 			"minConfidence": 8,
 			"minVolume": 20,
-			"minRecuperation": 6,
+			"minRecuperation": 6
 		},
 		"description": "Tu passes plus de temps sur TrainingPeaks que sur la selle.",
 		"hidden": true
@@ -520,7 +516,7 @@
 		"name": "Capteur KO",
 		"emoji": "️⚙️", 
 		"conditions": {
-			"maxFtp": 0,
+			"maxFtp": 0
 		},
 		"description": "Engine start, no problem. 5 minut. Tidim tidim tidim tidim. Engine kaput.",
 		"hidden": true
@@ -537,7 +533,7 @@
 			"maxSprint": 3,
 			"maxAero": 3,
 			"maxTechnique": 3,
-			"maxConfidence": 3,
+			"maxConfidence": 3
 		},
 		"description": "Tu finis toujours, même si c’est dernier. Respect éternel.",
 		"hidden": true
@@ -547,7 +543,7 @@
 		"name": "FTP Over 9000",
 		"emoji": "️🔥🤖️", 
 		"conditions": {
-			"minFtp": 9000,
+			"minFtp": 9000
 		},
 		"description": "Impossible. Tu es un dieu du watt. Les capteurs fondent à ton approche.",
 		"hidden": true
@@ -565,7 +561,7 @@
 			"minAero": 6,
 			"minTechnique": 6,
 			"minConfidence": 6,
-			"maxVolume": 0,
+			"maxVolume": 0
 		},
 		"description": "On ne t'a pas vu de la saison à l'entrainement, mais tu dépasses la plupart des cyclistes dans les cols. Tu restes un mystère pour tout le monde...",
 		"hidden": true
@@ -580,9 +576,76 @@
 			"sexe": "M",
 			"preference": "montagne",
 			"maxVolume": 1,
-			"maxRecuperation": 1,
+			"maxRecuperation": 1
 		},
 		"description": "Besoin de 364j de récupération pour faire une sortie annuelle en tenue rouge sous la neige, ta préparation annuelle est ... étonnante",
 		"hidden": true
-		}
+	},
+	{
+		"id": "ironman",
+		"name": "IronMan",
+		"emoji": "️👻", 
+		"conditions": {
+			"triathlon": true,
+			"triDistance": "XL"
+		},
+		"description": "Besoin de 364j de récupération pour faire une sortie annuelle en tenue rouge sous la neige, ta préparation annuelle est ... étonnante",
+		"hidden": true
+	}
 ]
+
+// Exemple
+// Penser à supprimer la dernière virgule
+//{
+//	"id": "grimpeur",
+//	"name": "Grimpeur",
+//	"emoji": "🧗", 
+//
+//	"conditions": {
+//	 💪 --- PHYSIOLOGIE ---
+//	"minFtp": 200,
+//	"maxFtp": 400,
+//	"minWeight": 55,
+//	"maxWeight": 70,
+//	"minWkg": 3.5,
+//	"maxWkg": 6.0,
+//	"minAge": 18,
+//	"maxAge": 65,
+//	"sexe": "M",
+//	"preference": "montagne",
+//
+//	 🧬 --- CAPACITÉS ---
+//	"minEndurance": 6,
+//	"maxEndurance": 10,
+//	"minExplosivite": 5,
+//	"maxExplosivite": 10,
+//	"minAerobie": 7,
+//	"maxAerobie": 10,
+//	"minSprint": 6,
+//	"maxSprint": 10,
+//
+//	 ⚙️ --- TECHNIQUE / CONFIANCE ---
+//	"minAero": 6,
+//	"maxAero": 10,
+//	"minTechnique": 8,
+//	"maxTechnique": 10,
+//	"minConfidence": 6,
+//	"maxConfidence": 10,
+//
+//	 🕒 --- ENTRAÎNEMENT ---
+//	"minVolume": 6,
+//	"maxVolume": 12,
+//	"minRecuperation": 6,
+//	"maxRecuperation": 10,
+//
+//	 🏊 --- TRIATHLON (optionnel) ---
+//	"triathlon": true,
+//	"triDistance": "M",
+//	"minTriTime": 90,
+//	"maxTriTime": 360
+//	},
+//
+//	"description": "Texte libre qui décrit le profil de manière humaine et stylée.",
+//
+//	"hidden": false
+//},
