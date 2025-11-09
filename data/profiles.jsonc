@@ -584,12 +584,12 @@
 	{
 		"id": "ironman",
 		"name": "IronMan",
-		"emoji": "️👻", 
+		"emoji": "️🦾🤖", 
 		"conditions": {
 			"triathlon": true,
 			"triDistance": "XL"
 		},
-		"description": "Besoin de 364j de récupération pour faire une sortie annuelle en tenue rouge sous la neige, ta préparation annuelle est ... étonnante",
+		"description": "You are an Ironman !",
 		"hidden": true
 	}
 ]
@@ -649,3 +649,4 @@
 //
 //	"hidden": false
 //},
+
