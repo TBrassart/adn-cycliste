@@ -66,6 +66,10 @@ body {
   padding: 24px;
 }
 
+.exporting .adn-main {
+  display: block;
+}
+
 .adn-form-card,
 .adn-result .profile-card {
   background: var(--card-bg);
@@ -153,6 +157,12 @@ input[type="range"] {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  width: 100%;
+  height: auto;
+  background: transparent;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
 }
 
 .profile-card {
@@ -408,47 +418,6 @@ input[type="range"] {
   }
 }
 
-#pro-compare {
-  margin-top: 1.5rem;
-  text-align: center;
-}
-
-#pro-compare h4 {
-  margin-bottom: 0.5rem;
-  color: var(--accent-color);
-}
-
-.pro-compare-card {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(148,163,253,0.1);
-  border: 1px solid rgba(148,163,253,0.3);
-  border-radius: 1rem;
-  padding: 0.75rem 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  transition: all 0.3s ease;
-}
-
-.pro-compare-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.pro-emoji {
-  font-size: 1.5rem;
-}
-
-.pro-similarity {
-  font-weight: bold;
-}
-
-.pro-style {
-  font-size: 0.85rem;
-  color: #6b7280;
-  margin-left: 0.5rem;
-}
-
 canvas#adn-radar-chart {
   margin-top: 1rem;
   background: rgba(255,255,255,0.05);
@@ -557,58 +526,6 @@ canvas#adn-radar-chart {
   background: var(--accent-color);
   color: white;
   border-color: transparent;
-}
-
-/* === Encadré Comparaison Pro (export inclus) === */
-#pro-compare {
-  margin-top: 1.5rem;
-  text-align: center;
-}
-
-#pro-compare h4 {
-  color: var(--accent-color);
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-}
-
-#pro-results {
-  display: flex;
-  justify-content: center;
-}
-
-.pro-compare-card {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(148, 163, 253, 0.1);
-  border: 1px solid rgba(148, 163, 253, 0.25);
-  border-radius: 0.75rem;
-  padding: 0.6rem 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(3px);
-}
-
-.pro-emoji {
-  font-size: 1.6rem;
-}
-
-.pro-similarity {
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.pro-style {
-  font-size: 0.85rem;
-  color: #6b7280;
-}
-
-.dark .pro-compare-card {
-  background: rgba(17, 24, 39, 0.85);
-  border-color: rgba(75, 85, 99, 0.5);
-}
-
-body.exporting {
-  background: #ffffff !important;
 }
 
 .loading-overlay {
@@ -740,6 +657,38 @@ body.exporting {
   background: rgba(255, 215, 0, 0.08);
 }
 
+/* === Encadré Comparaison Pro (export inclus) === */
+
+.pro-compare-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#pro-compare {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+#pro-compare h4 {
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+#pro-results {
+  display: flex;
+  justify-content: center;
+}
+
+.dark .pro-compare-card {
+  background: rgba(17, 24, 39, 0.85);
+  border-color: rgba(75, 85, 99, 0.5);
+}
+
+body.exporting {
+  background: #ffffff !important;
+}
+
 .pro-compare-card {
   margin-top: 1rem;
   background: rgba(148,163,253,0.08);
@@ -848,3 +797,86 @@ body.exporting {
   transition: none !important;
 }
 
+/* === Ajustements adaptatifs du radar === */
+.layout-square canvas#adn-radar-chart {
+  width: 80% !important;
+  max-width: 450px !important;
+  margin: 0 auto;
+  display: block;
+}
+
+.layout-vertical canvas#adn-radar-chart {
+  width: 90% !important;
+  max-width: 500px !important;
+}
+
+.layout-horizontal canvas#adn-radar-chart {
+  width: 45% !important;
+  max-width: 400px !important;
+}
+
+/* === Layouts adaptatifs pour l’export === */
+.layout-square .adn-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.layout-vertical .adn-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  padding: 1.5rem 0.8rem;
+}
+
+.layout-horizontal .adn-result {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.layout-horizontal .adn-result > * {
+  margin-bottom: 1rem;
+}
+
+/* === Bloc comparaison pro (uniformisé) === */
+.adn-result .pro-compare-card {
+  max-width: 500px;
+  font-size: 0.8rem;
+  background: rgba(148, 163, 253, 0.08);
+  border: 1px solid rgba(148, 163, 253, 0.3);
+  border-radius: 0.75rem;
+  padding: 0.8rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* === Centrage et ajustement visuel pendant capture === */
+.exporting .adn-result {
+  transform: scale(0.97);
+  transform-origin: center center;
+  transition: none !important;
+  overflow: hidden;
+}
+
+canvas#adn-radar-chart {
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* === Zone de capture invisible pour export === */
+#export-preview {
+  position: fixed;
+  top: -9999px;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: white;
+}

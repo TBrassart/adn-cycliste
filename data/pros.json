@@ -1,0 +1,44 @@
+[
+	{
+		id: "pogacar",
+		name: "Tadej Pogačar",
+		emoji: "🧗‍",
+		style: "grimpeur-puncheur",
+		stats: { wkg: 6.2, endurance: 9, explosivite: 8, sprint: 6, aero: 7, technique: 7 }
+	},
+	{
+		id: "van-aert",
+		name: "Wout Van Aert",
+		emoji: "⚡",
+		style: "polyvalent",
+		stats: { wkg: 5.8, endurance: 9, explosivite: 9, sprint: 9, aero: 8, technique: 9 }
+	},
+	{
+		id: "vdp",
+		name: "Mathieu van der Poel",
+		emoji: "🔥",
+		style: "puncheur-explosif",
+		stats: { wkg: 5.5, endurance: 8, explosivite: 10, sprint: 8, aero: 7, technique: 9 }
+	},
+	{
+		id: "vingegaard",
+		name: "Jonas Vingegaard",
+		emoji: "🏔️",
+		style: "grimpeur pur",
+		stats: { wkg: 6.4, endurance: 9, explosivite: 6, sprint: 4, aero: 7, technique: 6 }
+	},
+	{
+		id: "evenepoel",
+		name: "Remco Evenepoel",
+		emoji: "⏱️",
+		style: "chrono-grimpeur",
+		stats: { wkg: 6.0, endurance: 8, explosivite: 8, sprint: 6, aero: 10, technique: 8 }
+	},
+	{
+		id: "cavendish",
+		name: "Mark Cavendish",
+		emoji: "💥",
+		style: "sprinteur pur",
+		stats: { wkg: 4.5, endurance: 6, explosivite: 10, sprint: 10, aero: 8, technique: 8 }
+	}
+]

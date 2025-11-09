@@ -652,28 +652,60 @@
 	  if (!pngBtn || !pdfBtn || !captureArea) return;
 
 	  async function captureToCanvas(ratio = "square") {
-		document.body.classList.add("exporting");
+	  const captureArea = document.querySelector(".adn-result");
+	  if (!captureArea) return;
 
-		// 🆕 Appliquer la classe correspondant au format
-		captureArea.classList.remove("export-square", "export-horizontal", "export-vertical");
-		captureArea.classList.add(`export-${ratio}`);
+	  // === Créer un conteneur temporaire
+	  const preview = document.createElement("div");
+	  preview.id = "export-preview";
+	  document.body.appendChild(preview);
 
-		// attendre que le navigateur applique le nouveau style
-		await new Promise(r => setTimeout(r, 100));
+	  // Déplacer temporairement ton contenu dedans
+	  preview.appendChild(captureArea);
 
-		const canvas = await html2canvas(captureArea, {
-		  backgroundColor: "#ffffff",
-		  scale: 2,
-		  useCORS: true,
-		  logging: false
-		});
+	  // === Dimensions exactes selon le ratio
+	  const formats = {
+		square: { w: 1080, h: 1080 },
+		horizontal: { w: 1600, h: 900 },
+		vertical: { w: 1080, h: 1920 }
+	  };
+	  const { w, h } = formats[ratio] || formats.square;
 
-		// ❌ Retirer la classe de format pour revenir à la taille normale
-		captureArea.classList.remove(`export-${ratio}`);
-		document.body.classList.remove("exporting");
+	  // Style du conteneur de capture
+	  preview.style.width = `${w}px`;
+	  preview.style.height = `${h}px`;
+	  preview.style.position = "fixed";
+	  preview.style.top = "-9999px";
+	  preview.style.left = "-9999px";
+	  const theme = localStorage.getItem("theme") || "light";
+	  const bgColors = {
+		light: "#ffffff",
+		dark: "#1e1e1e",
+		zwift: "#111111",
+		rouvy: "#f8f8f8",
+		noel: "#fff6f6"
+	  };
+	  preview.style.background = bgColors[theme] || "#ffffff";
 
-		return canvas;
-	  }
+	  preview.classList.add(`layout-${ratio}`);
+
+	  // attendre le reflow
+	  await new Promise(r => setTimeout(r, 100));
+
+	  // === Capture du vrai contenu (avec Chart.js, styles et images)
+	  const canvas = await html2canvas(captureArea, {
+		backgroundColor: "#ffffff",
+		scale: 2,
+		useCORS: true,
+		logging: false
+	  });
+
+	  // === Remettre le contenu à sa place d’origine
+	  document.querySelector(".adn-main").appendChild(captureArea);
+	  document.body.removeChild(preview);
+
+	  return canvas;
+	}
 
 	  pngBtn.addEventListener("click", async () => {
 		const ratio = formatSelect?.value || "square";
@@ -725,7 +757,7 @@
 
 	  // === Gestion des cyclistes ===
 	  const minCyclists = 2;
-	  const maxCyclists = 8;
+	  const maxCyclists = 20;
 	  const cyclists = [];
 
 	  function resetCyclists() {
@@ -872,3 +904,4 @@
 
   window.ADNUI = ADNUI;
 })(window, document);
+
