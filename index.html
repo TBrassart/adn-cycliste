@@ -111,11 +111,13 @@
   <canvas id="adn-wave" class="adn-wave"></canvas>
 
   <!-- JS: ordre important -->
-  <script type="module" src="js/metricsSchema.js"></script>
-  <script type="module" src="js/matchingWeights.js"></script>
-  <script type="module" src="js/analyzer.js"></script>
-  <script type="module" src="js/ui.js"></script>
-  <script type="module" src="js/main.js"></script>
+    <script type="module">
+    import "./js/metricsSchema.js";
+    import "./js/matchingWeights.js";
+    import "./js/analyzer.js";
+    import "./js/ui.js";
+    import "./js/main.js";
+  	</script>
   
   <div id="loading-overlay" class="loading-overlay">
   <div class="loading-spinner"></div>
@@ -123,4 +125,5 @@
 </div>
 </body>
 </html>
+
 
