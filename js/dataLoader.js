@@ -10,9 +10,10 @@ async function loadJSON(path) {
 }
 
 export async function loadProfiles() {
-  return await loadJSON("data/profiles.json");
+  return await loadJSON("data/profiles.jsonc");
 }
 
 export async function loadPros() {
-  return await loadJSON("data/pros.json");
+  return await loadJSON("data/pros.jsonc");
 }
+
