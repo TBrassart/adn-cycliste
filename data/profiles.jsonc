@@ -516,7 +516,7 @@
 		"name": "Capteur KO",
 		"emoji": "️⚙️", 
 		"conditions": {
-			"maxFtp": 0
+			"maxFtp": 1
 		},
 		"description": "Engine start, no problem. 5 minut. Tidim tidim tidim tidim. Engine kaput.",
 		"hidden": true
@@ -649,4 +649,5 @@
 //
 //	"hidden": false
 //},
+
 
