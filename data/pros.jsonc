@@ -1,44 +1,101 @@
 [
+	// === PROS GRIMPEURS / PUNCHEURS ===
 	{
-		id: "pogacar",
-		name: "Tadej Pogačar",
-		emoji: "🧗‍",
-		style: "grimpeur-puncheur",
-		stats: { wkg: 6.2, endurance: 9, explosivite: 8, sprint: 6, aero: 7, technique: 7 }
+		"id": "pogacar",
+		"name": "Tadej Pogačar",
+		"emoji": "🐍",
+		"style": "Grimpeur / Puncheur",
+		"stats": {
+			"wkg": 6.3,
+			"endurance": 9.5,
+			"explosivite": 9.2,
+			"sprint": 7.0,
+			"aero": 8.0,
+			"technique": 8.5,
+			"volume": 10.0
+		}
 	},
+
 	{
-		id: "van-aert",
-		name: "Wout Van Aert",
-		emoji: "⚡",
-		style: "polyvalent",
-		stats: { wkg: 5.8, endurance: 9, explosivite: 9, sprint: 9, aero: 8, technique: 9 }
+		"id": "vingegaard",
+		"name": "Jonas Vingegaard",
+		"emoji": "🏔️",
+		"style": "Grimpeur pur",
+		"stats": {
+			"wkg": 6.4,
+			"endurance": 9.0,
+			"explosivite": 6.0,
+			"sprint": 4.0,
+			"aero": 7.0,
+			"technique": 6.0,
+			"volume": 9.5
+		}
 	},
+
+	// === PROS POLYVALENTS ===
 	{
-		id: "vdp",
-		name: "Mathieu van der Poel",
-		emoji: "🔥",
-		style: "puncheur-explosif",
-		stats: { wkg: 5.5, endurance: 8, explosivite: 10, sprint: 8, aero: 7, technique: 9 }
+		"id": "van_aert",
+		"name": "Wout van Aert",
+		"emoji": "🦬",
+		"style": "Puncheur / Sprinteur",
+		"stats": {
+			"wkg": 6.0,
+			"endurance": 9.0,
+			"explosivite": 8.5,
+			"sprint": 9.5,
+			"aero": 8.5,
+			"technique": 8.0,
+			"volume": 9.0
+		}
 	},
+
 	{
-		id: "vingegaard",
-		name: "Jonas Vingegaard",
-		emoji: "🏔️",
-		style: "grimpeur pur",
-		stats: { wkg: 6.4, endurance: 9, explosivite: 6, sprint: 4, aero: 7, technique: 6 }
+		"id": "vdp",
+		"name": "Mathieu van der Poel",
+		"emoji": "🔥",
+		"style": "Puncheur explosif",
+		"stats": {
+			"wkg": 5.5,
+			"endurance": 8.0,
+			"explosivite": 10.0,
+			"sprint": 8.0,
+			"aero": 7.0,
+			"technique": 9.0,
+			"volume": 8.5
+		}
 	},
+
+	// === PROS CHRONO / AÉRO ===
 	{
-		id: "evenepoel",
-		name: "Remco Evenepoel",
-		emoji: "⏱️",
-		style: "chrono-grimpeur",
-		stats: { wkg: 6.0, endurance: 8, explosivite: 8, sprint: 6, aero: 10, technique: 8 }
+		"id": "evenepoel",
+		"name": "Remco Evenepoel",
+		"emoji": "⏱️",
+		"style": "Chrono / Grimpeur",
+		"stats": {
+			"wkg": 6.0,
+			"endurance": 8.5,
+			"explosivite": 8.0,
+			"sprint": 6.0,
+			"aero": 9.0,
+			"technique": 8.0,
+			"volume": 8.5
+		}
 	},
+
+	// === PROS SPRINTEURS ===
 	{
-		id: "cavendish",
-		name: "Mark Cavendish",
-		emoji: "💥",
-		style: "sprinteur pur",
-		stats: { wkg: 4.5, endurance: 6, explosivite: 10, sprint: 10, aero: 8, technique: 8 }
+		"id": "cavendish",
+		"name": "Mark Cavendish",
+		"emoji": "💥",
+		"style": "Sprinteur pur",
+		"stats": {
+			"wkg": 4.5,
+			"endurance": 6.0,
+			"explosivite": 10.0,
+			"sprint": 10.0,
+			"aero": 8.0,
+			"technique": 8.0,
+			"volume": 7.5
+		}
 	}
 ]
